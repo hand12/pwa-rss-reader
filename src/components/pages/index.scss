@@ -19,6 +19,8 @@
 
 .cards {
   width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
   position: relative;
   $cardsPositionOffset: 30px;
   $cardsScaleOffset: 0.08;
@@ -51,6 +53,8 @@
     right: 0;
     touch-action: none;
     background: white;
+    transform-origin: 50% 100%;
+    will-change: transform, opacity;
     @include materialShadow();
     .imageContainer {
       width: 100%;
@@ -72,4 +76,8 @@
       }
     }
   }
+  .isAnimating {
+    transition: transform 0.7s, max-height 0.7s;
+  }
+  
 }
