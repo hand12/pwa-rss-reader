@@ -834,6 +834,68 @@
   dependencies:
     "@hapi/hoek" "6.x.x"
 
+"@interactjs/actions@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/actions/-/actions-1.5.4.tgz#a577c9b077ceaa1d28960f605cf7471c2e345469"
+
+"@interactjs/auto-scroll@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/auto-scroll/-/auto-scroll-1.5.4.tgz#b2f9adb4b6fc8fe01c814a381cbe11b5a264c817"
+
+"@interactjs/auto-start@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/auto-start/-/auto-start-1.5.4.tgz#97e4bb6a43a27d4e73f8f0c281ef888eca78f8a4"
+
+"@interactjs/core@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/core/-/core-1.5.4.tgz#6315ad91f3500b4a1fbbaac511c4cdc28a7dd6f2"
+
+"@interactjs/dev-tools@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/dev-tools/-/dev-tools-1.5.4.tgz#0eba63a63a7f9204774069eed6c1376a15b46bdf"
+  dependencies:
+    "@interactjs/utils" "1.5.4"
+
+"@interactjs/inertia@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/inertia/-/inertia-1.5.4.tgz#0934798c05f7876b7ecdc1ea39c0ed4d1f2bf140"
+
+"@interactjs/interact@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/interact/-/interact-1.5.4.tgz#9188b97e8565e2f7241ec08a096da986c42d4656"
+
+"@interactjs/modifiers@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/modifiers/-/modifiers-1.5.4.tgz#a48234b0809bd208c19e0d0c142ae4633f2ed550"
+
+"@interactjs/pointer-events@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/pointer-events/-/pointer-events-1.5.4.tgz#c1c4ed4b2674ddc9d138d58a4125f58d33dace1a"
+
+"@interactjs/reflow@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/reflow/-/reflow-1.5.4.tgz#a1a2ae50d6c945a28bf1846af493b9ac02950935"
+
+"@interactjs/types@1.5.4", "@interactjs/types@^1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/types/-/types-1.5.4.tgz#6eb3fe48a7f680a1e1177c45bd5a65083415e111"
+  dependencies:
+    "@interactjs/actions" "1.5.4"
+    "@interactjs/auto-scroll" "1.5.4"
+    "@interactjs/auto-start" "1.5.4"
+    "@interactjs/core" "1.5.4"
+    "@interactjs/dev-tools" "1.5.4"
+    "@interactjs/inertia" "1.5.4"
+    "@interactjs/interact" "1.5.4"
+    "@interactjs/modifiers" "1.5.4"
+    "@interactjs/pointer-events" "1.5.4"
+    "@interactjs/reflow" "1.5.4"
+    "@interactjs/utils" "1.5.4"
+
+"@interactjs/utils@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@interactjs/utils/-/utils-1.5.4.tgz#392a03f14274be7288e342959d3bc4d140379f58"
+
 "@jest/console@^24.7.1":
   version "24.7.1"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.7.1.tgz#32a9e42535a97aedfe037e725bd67e954b459545"
@@ -4262,6 +4324,12 @@ inquirer@^6.2.2:
     string-width "^2.1.0"
     strip-ansi "^5.1.0"
     through "^2.3.6"
+
+interactjs@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/interactjs/-/interactjs-1.5.4.tgz#bbe2f71834ea90ee38562fa1ac337f9b1282dd40"
+  dependencies:
+    "@interactjs/types" "1.5.4"
 
 internal-ip@^4.2.0:
   version "4.3.0"

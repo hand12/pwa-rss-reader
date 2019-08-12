@@ -1,4 +1,5 @@
 @import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
 
 .title {
   color: $mainColor;
@@ -8,4 +9,67 @@
   width: 100%;
   height: 100vh;
   background: $backgroundColor;
+}
+
+.cardsContainer {
+  width: 100%;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.cards {
+  width: 100%;
+  position: relative;
+  $cardsPositionOffset: 30px;
+  $cardsScaleOffset: 0.08;
+  $cardsTotal: 10;
+
+  @for $i from 1 through $cardsTotal {
+    $index: $i - 1;
+    $translation: $cardsPositionOffset * $index;
+    $scale: 1 - ($cardsScaleOffset * $index);
+    .card:nth-child(#{$i}) {
+      z-index: $cardsTotal - $index;
+      opacity: 1;
+      transform: translateY($translation) scale($scale);
+
+      @if $i >= 4 {
+        display: none;
+      }
+
+      @if $i != 1 {
+        overflow: hidden;
+      }
+    }
+  }
+  .card {
+    width: 100%;
+    border-radius: 8px;
+    position: absolute;
+    top: 16px;
+    left: 0;
+    right: 0;
+    touch-action: none;
+    background: white;
+    @include materialShadow();
+    .imageContainer {
+      width: 100%;
+      height: 300px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px 8px 0 0;
+        object-fit: cover;
+      }
+    }
+    .bottomContents {
+      padding: 16px;
+      .heading {
+        text-align: left;
+        font-size: 16px;
+        font-weight: bold;
+        @include text-reader(3);
+      }
+    }
+  }
 }
