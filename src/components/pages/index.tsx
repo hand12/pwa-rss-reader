@@ -1,29 +1,51 @@
-import React, { FC, useEffect, useState, useRef } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import interact from 'interactjs'
 import classNames from 'classnames'
+import Icon from '@material-ui/core/Icon'
 import './index.scss';
 
 const TopPage: FC<{}> = () => {
   const interactMaxRotation: number = 15
-  const interactOutOfSightXCoordinate: number = 500
-  const interactOutOfSightYCoordinate: number = 600
-  const interactYThreshold: number = 150
+  const interactOutOfSightXCoordinate: number = 300
+  const interactOutOfSightYCoordinate: number = 80
   const interactXThreshold: number = 10
 
   // state
   const [ interactPosition, setInteractPosition] = useState({ x: 0, y: 0, rotation: 0 })
   const [ isInteractAnimating, setIsInteractAnimating] = useState(true)
+  const [ isInteractDragged, setIsInteractDragged] = useState(false)
   const [ isShowing, setIsShowing] = useState(true)
-  const [ test, setTest] = useState('hoge')
 
 
   // functions
   const transformString = () => {
-    if (!isInteractAnimating) {
+    if (!isInteractAnimating || isInteractDragged) {
       const { x, y, rotation } = interactPosition
       return `translate3D(${x}px, ${y}px, 0) rotate(${rotation}deg)`
     }
     return undefined
+  }
+
+  const swipe = (direct: string) => {
+    const element = document.getElementsByClassName('card')[0]
+    interact(element).unset()
+
+    switch(direct) {
+      case 'LEFT':
+        setInteractPosition({
+          x: -interactOutOfSightXCoordinate,
+          y: interactOutOfSightYCoordinate,
+          rotation: -interactMaxRotation
+        })
+        break
+      case 'RIGHT':
+        setInteractPosition({
+          x: interactOutOfSightXCoordinate,
+          y: interactOutOfSightYCoordinate,
+          rotation: interactMaxRotation
+        })
+        break 
+    }
   }
 
   const cardClassNames = classNames('card', { 'isAnimating' : isInteractAnimating })
@@ -47,12 +69,12 @@ const TopPage: FC<{}> = () => {
         })
       },
       onend: () => {
+        setIsInteractDragged(true)
         setIsInteractAnimating(true)
         setInteractPosition(interactPosition => {
-          const { x, y } = interactPosition
-          if (x > interactXThreshold) console.log('good')
-          else if (x < -interactXThreshold) console.log('bad')
-
+          const { x } = interactPosition
+          if (x > interactXThreshold) swipe('RIGHT')
+          else if (x < -interactXThreshold) swipe('LEFT')
           return { x: 0, y: 0, rotation: 0 }
         })
       },
@@ -61,7 +83,7 @@ const TopPage: FC<{}> = () => {
 
   return (
     <div className="mainContainer">
-      <h1 className="title">Hello World</h1>
+      <h1 className="title" onClick={ () => console.log(interactPosition)}>Hello World</h1>
       <div className="cardsContainer">
         <div className="cards">
           <div className={cardClassNames} style={{ transform: transformString() }}>
@@ -75,6 +97,7 @@ const TopPage: FC<{}> = () => {
               <div className="postedDate">
                 2019/8/12
               </div>
+              <Icon>star</Icon>
             </div>
           </div>
 
