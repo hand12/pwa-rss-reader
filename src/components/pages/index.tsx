@@ -97,7 +97,10 @@ const TopPage: FC<{}> = () => {
               <div className="postedDate">
                 2019/8/12
               </div>
-              <Icon>star</Icon>
+            </div>
+            <div className="labelContainer">
+              <Icon className="leftLabel">close</Icon>
+              <Icon className="rightLabel">radio_button_unchecked</Icon>
             </div>
           </div>
 
