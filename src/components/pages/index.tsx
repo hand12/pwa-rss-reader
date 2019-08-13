@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState, useRef } from 'react'
 import interact from 'interactjs'
 import classNames from 'classnames'
 import './index.scss';
@@ -14,62 +14,47 @@ const TopPage: FC<{}> = () => {
   const [ interactPosition, setInteractPosition] = useState({ x: 0, y: 0, rotation: 0 })
   const [ isInteractAnimating, setIsInteractAnimating] = useState(true)
   const [ isShowing, setIsShowing] = useState(true)
-  const [ test, setTest ] = useState(false)
+  const [ test, setTest] = useState('hoge')
+
 
   // functions
-  const resetCardPosition = () => {
-    console.log('reset')
-    setInteractPosition({ x: 0, y: 0, rotation: 0 })
-  }
-
   const transformString = () => {
     if (!isInteractAnimating) {
       const { x, y, rotation } = interactPosition
       return `translate3D(${x}px, ${y}px, 0) rotate(${rotation}deg)`
     }
-    // return `translate3D(0px, 0px, 0) rotate(0deg)`
     return undefined
   }
 
   const cardClassNames = classNames('card', { 'isAnimating' : isInteractAnimating })
 
   useEffect(() => {
-    console.log(test)
-    setTest(true)
-    console.log(test)
-
-
     const element = document.getElementsByClassName('card')[0]
     interact(element).draggable({
       onstart: () => {
-        console.log('onstart')
         setIsInteractAnimating(false)
       },
       onmove: (event: any) => {
-        console.log('onmove')
-        console.log(interactPosition)
-
-        let rotation = interactMaxRotation * (interactPosition.x + event.dx / interactXThreshold)
-
-        if (rotation > interactMaxRotation) rotation = interactMaxRotation
-        else if (rotation < -interactMaxRotation) rotation = -interactMaxRotation
-        // setInteractPosition({ x , y, rotation })
         setInteractPosition(interactPosition => {
-          return {
-            x: interactPosition.x + event.dx,
-            y: interactPosition.y + event.dy,
-            rotation
-          }
+          const x = interactPosition.x + event.dx
+          const y = interactPosition.y + event.dy
+          let rotation = interactMaxRotation * (x / interactXThreshold)
+
+          if (rotation > interactMaxRotation) rotation = interactMaxRotation
+          else if (rotation < -interactMaxRotation) rotation = -interactMaxRotation
+
+          return { x, y, rotation }
         })
       },
       onend: () => {
-        console.log('onend')
-        const { x, y } = interactPosition
         setIsInteractAnimating(true)
+        setInteractPosition(interactPosition => {
+          const { x, y } = interactPosition
+          if (x > interactXThreshold) console.log('good')
+          else if (x < -interactXThreshold) console.log('bad')
 
-        if (x > interactXThreshold) console.log('good')
-        else if (x < -interactXThreshold) console.log('bad')
-        else resetCardPosition()
+          return { x: 0, y: 0, rotation: 0 }
+        })
       },
     })
   }, [])
@@ -77,10 +62,7 @@ const TopPage: FC<{}> = () => {
   return (
     <div className="mainContainer">
       <h1 className="title">Hello World</h1>
-      <div className="headingContainer" onClick={ () => setInteractPosition({x: 100, y: 100, rotation: 10})}>
-        エンタメ
-      </div>
-      <div className="cardsContainer" onClick={ () => console.log(interactPosition)}>
+      <div className="cardsContainer">
         <div className="cards">
           <div className={cardClassNames} style={{ transform: transformString() }}>
             <div className="imageContainer">
