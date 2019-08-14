@@ -1,0 +1,31 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
+.cards {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  position: relative;
+  $cardsPositionOffset: 30px;
+  $cardsScaleOffset: 0.08;
+  $cardsTotal: 10;
+
+  @for $i from 1 through $cardsTotal {
+    $index: $i - 1;
+    $translation: $cardsPositionOffset * $index;
+    $scale: 1 - ($cardsScaleOffset * $index);
+    .card:nth-child(#{$i}) {
+      z-index: $cardsTotal - $index;
+      opacity: 1;
+      transform: translateY($translation) scale($scale);
+
+      @if $i >= 4 {
+        display: none;
+      }
+
+      @if $i != 1 {
+        overflow: hidden;
+      }
+    }
+  }
+}
