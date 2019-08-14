@@ -19,9 +19,11 @@
   align-items: center;
   .label {
     opacity: 0;
-    font-size: 24px;
+    font-size: 12px;
     font-weight: bold;
     transition: 0.7s;
+    background: gray;
+    padding: 8px;
   }
   .isDisplay {
     opacity: 1;

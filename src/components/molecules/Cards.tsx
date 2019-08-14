@@ -32,8 +32,8 @@ const Cards: FC<{}> = () => {
           <Card setDisplayLabel={(direct) => setDisplayLabel(direct) } />
         </div>
         <div className="labelContainer">
-          <Icon className={leftLabelClassNames}>close</Icon>
-          <Icon className={rightLabelClassNames}>radio_button_unchecked</Icon>
+          <span className={leftLabelClassNames}>スキップ</span>
+          <span className={rightLabelClassNames}>読む</span>
         </div>
       </div>
     </div>
