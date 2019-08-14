@@ -3,7 +3,11 @@ import interact from 'interactjs'
 import classNames from 'classnames'
 import './Card.scss';
 
-const Card: FC<{}> = () => {
+interface CardProps {
+  setDisplayLabel: (direct: string) => void
+}
+
+const Card: FC<CardProps> = ({ setDisplayLabel }) => {
   const interactMaxRotation: number = 15
   const interactOutOfSightXCoordinate: number = 300
   const interactOutOfSightYCoordinate: number = 80
@@ -46,10 +50,11 @@ const Card: FC<{}> = () => {
   }
 
   const cardClassNames = classNames('card', { 'isAnimating' : isInteractAnimating })
-  const labelClassNames = classNames('label', { 'isShow' : interactPosition.x >  interactXThreshold })
 
   useEffect(() => {
     const element = document.getElementsByClassName('card')[0]
+    if (!element) return
+
     interact(element).draggable({
       onstart: () => {
         setIsInteractAnimating(false)
@@ -78,6 +83,13 @@ const Card: FC<{}> = () => {
       },
     })
   }, [])
+
+  useEffect(() => {
+    const { x } = interactPosition
+    if (x > interactXThreshold) setDisplayLabel('RIGHT')
+    else if (x < -interactXThreshold) setDisplayLabel('LEFT')
+
+  }, [interactPosition.x])
 
   return (
     <div className={cardClassNames} style={{ transform: transformString() }}>
