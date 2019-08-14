@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import interact from 'interactjs'
 import classNames from 'classnames'
-import Icon from '@material-ui/core/Icon'
 import './Card.scss';
 
 const Card: FC<{}> = () => {
@@ -92,10 +91,6 @@ const Card: FC<{}> = () => {
         <div className="postedDate">
           2019/8/12
         </div>
-      </div>
-      <div className="labelContainer">
-        <Icon className={labelClassNames}>close</Icon>
-        <Icon className={labelClassNames}>radio_button_unchecked</Icon>
       </div>
     </div>
   )

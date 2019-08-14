@@ -32,28 +32,6 @@
       @include text-reader(3);
     }
   }
-  .labelContainer {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .label {
-      display: none;
-      font-size: 36px;
-      &:first-child {
-        color: blue;
-      }
-      &:last-child {
-        color: red;
-      }
-    }
-    .isShow {
-      display: block;
-    }
-  }
 }
 .isAnimating {
   transition: transform 0.7s, max-height 0.7s;
