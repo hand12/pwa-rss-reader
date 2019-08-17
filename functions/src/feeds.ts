@@ -50,8 +50,20 @@ export const saveFeeds = (feeds: Feed[]) => {
   }
 }
 
-export const deleteFeeds = () => {
-  console.log('delete feeds')
+export const deleteFeeds = async () => {
+  const yesterday = getYesterday()
+  const snapshot = await feedsRef.where("createdAt",  "<=", yesterday).get()
+  snapshot.docs.forEach((doc: any) => {
+    if (doc) { doc.ref.delete() }
+  })
+  console.log('called deleteFeeds')
+}
+
+const getYesterday = () => {
+  const now = new Date
+  now.setDate(now.getDate() -1)
+  now.setHours(23)
+  return now
 }
 
 const getFeedsFromProvider = async (name: string) => {
