@@ -1,8 +1,5 @@
-import * as functions from 'firebase-functions'
 const RssParser = require('rss-parser')
-
 const admin = require('firebase-admin')
-admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
 const feedsRef = db.collection('feeds')
 
@@ -32,9 +29,9 @@ interface Feed {
   createdAt: Date
 }
 
-export const getFeeds = async () => {
+export const fetchFeeds = async () => {
   const feeds = [
-    ...await getFeedsFromProvider('gizmodo')
+    ...await fetchFeedsFromProvider('gizmodo')
   ]
   console.log('get feeds', feeds)
   return feeds
@@ -66,8 +63,8 @@ const getYesterday = () => {
   return now
 }
 
-const getFeedsFromProvider = async (name: string) => {
-  const provider = Providers.find(provider => provider.name === name)
+const fetchFeedsFromProvider = async (name: string) => {
+  const provider = PROVIDERS.find(provider => provider.name === name)
   if (!provider) return []
 
   const parser = new RssParser()
@@ -76,7 +73,7 @@ const getFeedsFromProvider = async (name: string) => {
     const res = await parser.parseURL(provider.url)
     feeds = res.items.map((item: Item) => {
       return {
-        genre: 'Gadget',
+        genre: provider.genre,
         provider: provider.name,
         title: item.title,
         link: item.link,
@@ -95,9 +92,10 @@ const getFeedsFromProvider = async (name: string) => {
   return feeds
 }
 
-const Providers = [
+const PROVIDERS = [
   {
     name: 'gizmodo',
-    url: 'http://feeds.gizmodo.jp/rss/gizmodo/index.xml'
+    url: 'http://feeds.gizmodo.jp/rss/gizmodo/index.xml',
+    genre: 'Gadget'
   }
 ]
