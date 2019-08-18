@@ -1,3 +1,5 @@
+import { deleteCollection } from './utils/firebase'
+
 const RssParser = require('rss-parser')
 const admin = require('firebase-admin')
 const db = admin.firestore()
@@ -38,21 +40,19 @@ export const fetchFeeds = async () => {
 }
 
 export const saveFeeds = (feeds: Feed[]) => {
-  try {
+  return Promise.all(
     feeds.map(async feed => await feedsRef.add(feed))
-  }
-  catch(e) {
+  )
+  .catch((e) => {
     console.log('Error, save feeds', feeds)
     console.error(e.message)
-  }
+  })
 }
 
 export const deleteFeeds = async () => {
   const yesterday = getYesterday()
-  const snapshot = await feedsRef.where("createdAt",  "<=", yesterday).get()
-  snapshot.docs.forEach((doc: any) => {
-    if (doc) { doc.ref.delete() }
-  })
+  const yesterdayFeedsRef = await feedsRef.where("createdAt",  "<=", yesterday)
+  await deleteCollection(yesterdayFeedsRef)
   console.log('called deleteFeeds')
 }
 
@@ -68,26 +68,23 @@ const fetchFeedsFromProvider = async (name: string) => {
   if (!provider) return []
 
   const parser = new RssParser()
-  let feeds: Feed[]
-  try {
-    const res = await parser.parseURL(provider.url)
-    feeds = res.items.map((item: Item) => {
-      return {
-        genre: provider.genre,
-        provider: provider.name,
-        title: item.title,
-        link: item.link,
-        image: item.enclosure.type === 'image/jpeg' ? item.enclosure.url : '',
-        pubDate: new Date(item.pubDate),
-        createdAt: new Date
-      }
-    })
-  }
-  catch(e) {
-    feeds = []
-    console.log('Error, parse feeds')
+
+  const res = await parser.parseURL(provider.url).catch((e: any) => {
+    console.error('Error parseURL', provider.url)
     console.error(e.message)
-  }
+  })
+
+  const feeds = res.items.map((item: Item) => {
+    return {
+      genre: provider.genre,
+      provider: provider.name,
+      title: item.title,
+      link: item.link,
+      image: item.enclosure.type === 'image/jpeg' ? item.enclosure.url : '',
+      pubDate: new Date(item.pubDate),
+      createdAt: new Date
+    }
+  })
 
   return feeds
 }

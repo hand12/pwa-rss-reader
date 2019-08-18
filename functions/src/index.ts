@@ -8,15 +8,16 @@ import { getFeeds } from './api/feeds'
 
 export const updateFeeds = functions.pubsub.schedule('00 6 * * *').onRun(async (context) => {
   const feeds = await fetchFeeds()
-  try {
-    saveFeeds(feeds)
-  }
-  catch(e) {
-    console.error('Error, fetchFeed')
+
+  Promise.all([
+    saveFeeds(feeds),
+    deleteFeeds()
+  ])
+  .catch((e) => {
+    console.error('Error, update feeds')
     console.error(e.message)
-    return 0
-  }
-  deleteFeeds()
+  })
+  console.log('complete! update feeds')
   return 0
 })
 
