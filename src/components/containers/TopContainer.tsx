@@ -1,15 +1,17 @@
-import React, { FC } from 'react'
+import { Dispatch } from 'redux'
+import { connect } from 'react-redux'
+import { InitialStateType } from '../../ducks/feeds/reducers'
+import { FeedsActions } from '../../ducks/feeds/actions'
+import TopPageContents from '../organisms/TopPageContents'
 
-import Cards from '../molecules/Cards'
-
-const TopContainer: FC<{}> = () => {
-  return (
-    <div className="mainContainer">
-      <div className="cardsContainer">
-        <Cards />
-      </div>
-    </div>
-  )
+function mapDispatchToProps(dispatch: Dispatch) {
+  return {
+    getFeeds: (genre: string) => dispatch(FeedsActions.getFeeds(genre))
+  }
 }
 
-export default TopContainer
+// function mapStateToProps(state: InitialStateType) {
+//   return Object.assign({}, state.feeds)
+// }
+
+export default connect(mapDispatchToProps, {})(TopPageContents)

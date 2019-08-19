@@ -11,6 +11,7 @@
     "@types/node": "12.7.1",
     "@types/react": "16.8.25",
     "@types/react-dom": "16.8.5",
+    "@types/react-redux": "^7.1.2",
     "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
     "firebase": "^6.3.5",
@@ -18,8 +19,12 @@
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
     "react-scripts": "3.0.1",
-    "typescript": "3.5.3"
+    "redux": "^4.0.4",
+    "typescript": "3.5.3",
+    "typescript-fsa": "^3.0.0-beta-2",
+    "typescript-fsa-reducers": "^1.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
