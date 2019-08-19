@@ -1,15 +1,9 @@
 import React, { FC } from 'react'
-import './index.scss';
-
-import Cards from '../molecules/Cards'
+import TopContainer from '../containers/TopContainer'
 
 const TopPage: FC<{}> = () => {
   return (
-    <div className="mainContainer">
-      <div className="cardsContainer">
-        <Cards />
-      </div>
-    </div>
+    <TopContainer />
   )
 }
 
