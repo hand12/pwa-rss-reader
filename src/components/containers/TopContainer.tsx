@@ -10,8 +10,8 @@ function mapDispatchToProps(dispatch: Dispatch) {
   }
 }
 
-// function mapStateToProps(state: InitialStateType) {
-//   return Object.assign({}, state.feeds)
-// }
+function mapStateToProps(state: InitialStateType) {
+  return state
+}
 
-export default connect(mapDispatchToProps, {})(TopPageContents)
+export default connect(mapStateToProps, mapDispatchToProps)(TopPageContents)
