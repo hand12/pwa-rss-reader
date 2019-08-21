@@ -1,15 +1,15 @@
 import React, { FC, useState, useEffect } from 'react'
 import Icon from '@material-ui/core/Icon'
 import classNames from 'classnames'
-import { Feed } from '../../ducks/feeds/types'
+import { CardType } from '../atoms/Card'
 import Card from '../atoms/Card'
 import './Cards.scss'
 
 interface CardsProps {
-  feeds: Feed[]
+  cards: CardType[]
 }
 
-const Cards: FC<CardsProps> = ({ feeds }) => {
+const Cards: FC<CardsProps> = ({ cards }) => {
 
   const [ isDisplayLeftLabel, setIsDisplayLeftLabel ] = useState(false)
   const [ isDisplayRightLabel, setIsDisplayRightLabel ] = useState(false)
@@ -39,8 +39,8 @@ const Cards: FC<CardsProps> = ({ feeds }) => {
       <div className="cardsContainer">
         <div className="cards">
           {
-            feeds.map(feed => (
-              <Card feed={ feed } key={ feed.id } setDisplayLabel={(direct) => setDisplayLabel(direct) } />
+            cards.map(card => (
+              <Card card={ card } key={ card.id } setDisplayLabel={ (direct) => setDisplayLabel(direct) } />
             ))
           }
         </div>
