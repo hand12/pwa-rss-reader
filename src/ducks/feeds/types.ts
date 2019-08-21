@@ -1,4 +1,5 @@
 export interface Feed {
+  id: string
   genre: string
   provider: string
   title: string

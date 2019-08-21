@@ -1,13 +1,15 @@
 import React, { FC, useEffect, useState } from 'react'
 import interact from 'interactjs'
 import classNames from 'classnames'
+import { Feed } from '../../ducks/feeds/types'
 import './Card.scss';
 
 interface CardProps {
+  feed: Feed
   setDisplayLabel: (direct: string) => void
 }
 
-const Card: FC<CardProps> = ({ setDisplayLabel }) => {
+const Card: FC<CardProps> = ({ setDisplayLabel, feed }) => {
   const interactMaxRotation: number = 15
   const interactOutOfSightXCoordinate: number = 300
   const interactOutOfSightYCoordinate: number = 80
@@ -52,7 +54,7 @@ const Card: FC<CardProps> = ({ setDisplayLabel }) => {
   const cardClassNames = classNames('card', { 'isAnimating' : isInteractAnimating })
 
   useEffect(() => {
-    const element = document.getElementsByClassName('card')[0]
+    const element = document.getElementById(feed.id)
     if (!element) return
 
     interact(element).draggable({
@@ -91,8 +93,13 @@ const Card: FC<CardProps> = ({ setDisplayLabel }) => {
 
   }, [interactPosition.x])
 
+  useEffect(() => {
+    console.log('created Card!')
+    console.log(feed)
+  }, [feed])
+
   return (
-    <div className={cardClassNames} style={{ transform: transformString() }}>
+    <div className={cardClassNames} id={feed.id} style={{ transform: transformString() }}>
       <div className="imageContainer">
         <img src="https://firebasestorage.googleapis.com/v0/b/with-ruit.appspot.com/o/uploads%2Farticles%2FIMG_9248.JPG_jvdz7piq_2019_5_8_0_56?alt=media&token=b0f782db-7d11-4566-9f47-434d3a434c2a" />
       </div>

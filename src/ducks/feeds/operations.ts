@@ -11,13 +11,10 @@ export const GetFeedsEpic = (actions$: any) => (
     switchMap((action: any) => {
       return from(getFeeds('genre'))
         .pipe(
-          map((feeds: Feed[]) => {
-            // console.log(feeds)
-            FeedsActions.setFeeds(feeds)
-          })
+          map((feeds: Feed[]) => FeedsActions.setFeeds(feeds))
         )
     }),
-    ignoreElements()
+    // ignoreElements()
   )
 )
 

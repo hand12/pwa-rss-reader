@@ -5,7 +5,7 @@ const feedsRef = db.collection('feeds')
 export const getFeeds = async (genre: string) => {
   const snapShot = await feedsRef.where("genre", "==", genre).get()
   return snapShot.docs.map((doc: any) => {
-    if (doc) return doc.data()
+    if (doc) return Object.assign({}, doc.data(), { id: doc.id })
     else return []
   })
 }

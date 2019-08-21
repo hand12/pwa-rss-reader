@@ -1,7 +1,7 @@
 // import { feedsActions } from './actions'
 import { Feed } from './types'
 
-const initialState: { feeds: Feed[] } = {
+export const initialState = {
   feeds: []
 }
 
@@ -16,15 +16,11 @@ interface ActionType {
 
 export const feedsReducer = (state: InitialStateType = initialState, action: ActionType) => {
   switch(action.type) {
-    case 'GET_FEEDS':
-      console.log('called get feeds')
-      return Object.assign({}, state)
     case 'SET_FEEDS':
-      console.log('called set feeds')
-      console.log(action)
-      return Object.assign({}, state)
+      return Object.assign({}, state, {
+        feeds: action.payload
+      })
     default:
-      console.log('called default')
       return state
   }
 }
