@@ -12,6 +12,11 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, feeds }) => {
 
   const [ displayCards, setDisplayCards ] = useState<CardType[]>([])
 
+  const removeSwipedCards = (id: string) => {
+    const cards = displayCards.filter((card: CardType) => card.id != id)
+    setDisplayCards(cards)
+  }
+
   useEffect(() => {
     getFeeds('genre')
   }, [])
