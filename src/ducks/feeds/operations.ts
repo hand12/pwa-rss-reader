@@ -12,7 +12,8 @@ export const GetFeedsEpic = (actions$: any) => (
       return from(getFeeds('genre'))
         .pipe(
           map((feeds: Feed[]) => {
-            console.log(feeds)
+            // console.log(feeds)
+            FeedsActions.setFeeds(feeds)
           })
         )
     }),

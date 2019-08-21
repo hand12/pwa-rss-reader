@@ -19,6 +19,10 @@ export const feedsReducer = (state: InitialStateType = initialState, action: Act
     case 'GET_FEEDS':
       console.log('called get feeds')
       return Object.assign({}, state)
+    case 'SET_FEEDS':
+      console.log('called set feeds')
+      console.log(action)
+      return Object.assign({}, state)
     default:
       console.log('called default')
       return state
