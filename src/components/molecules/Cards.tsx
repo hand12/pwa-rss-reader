@@ -7,9 +7,10 @@ import './Cards.scss'
 
 interface CardsProps {
   cards: CardType[]
+  swipeCard(id: string): void
 }
 
-const Cards: FC<CardsProps> = ({ cards }) => {
+const Cards: FC<CardsProps> = ({ cards, swipeCard }) => {
 
   const [ isDisplayLeftLabel, setIsDisplayLeftLabel ] = useState(false)
   const [ isDisplayRightLabel, setIsDisplayRightLabel ] = useState(false)
@@ -40,7 +41,7 @@ const Cards: FC<CardsProps> = ({ cards }) => {
         <div className="cards">
           {
             cards.map(card => (
-              <Card card={ card } key={ card.id } setDisplayLabel={ (direct) => setDisplayLabel(direct) } />
+              <Card card={ card } key={ card.id } setDisplayLabel={ (direct) => setDisplayLabel(direct) } swipeCard={ (id: string) => swipeCard(id) } />
             ))
           }
         </div>

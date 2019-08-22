@@ -7,13 +7,14 @@ import './Card.scss';
 interface CardProps {
   card: CardType
   setDisplayLabel: (direct: string) => void
+  swipeCard(id: string): void
 }
 
 export interface CardType extends Feed {
   swiped: boolean
 }
 
-const Card: FC<CardProps> = ({ setDisplayLabel, card }) => {
+const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
   const interactMaxRotation: number = 15
   const interactOutOfSightXCoordinate: number = 300
   const interactOutOfSightYCoordinate: number = 80
@@ -39,6 +40,7 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card }) => {
 
     switch(direct) {
       case 'LEFT':
+        swipeCard(card.id)
         setInteractPosition({
           x: -interactOutOfSightXCoordinate,
           y: interactOutOfSightYCoordinate,
@@ -46,6 +48,7 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card }) => {
         })
         break
       case 'RIGHT':
+        swipeCard(card.id)
         setInteractPosition({
           x: interactOutOfSightXCoordinate,
           y: interactOutOfSightYCoordinate,

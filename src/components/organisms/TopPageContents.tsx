@@ -12,8 +12,14 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, feeds }) => {
 
   const [ displayCards, setDisplayCards ] = useState<CardType[]>([])
 
-  const removeSwipedCards = (id: string) => {
-    const cards = displayCards.filter((card: CardType) => card.id != id)
+  const swipeCard = (id: string) => {
+    console.log('swiped!')
+    const card = displayCards.find(card => card.id === id)
+    if (!card) return
+
+    card.swiped = true
+
+    const cards = displayCards.filter(card => !card.swiped)
     setDisplayCards(cards)
   }
 
@@ -29,7 +35,7 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, feeds }) => {
   return (
     <div className="mainContents">
       <div className="cardsContents">
-        <Cards cards={ displayCards } />
+        <Cards cards={ displayCards } swipeCard={ (id: string) => swipeCard(id) }/>
       </div>
     </div>
   )
