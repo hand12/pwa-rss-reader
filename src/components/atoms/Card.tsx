@@ -108,11 +108,11 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
   return (
     <div className={cardClassNames} id={card.id} style={{ transform: transformString() }}>
       <div className="imageContainer">
-        <img src="https://firebasestorage.googleapis.com/v0/b/with-ruit.appspot.com/o/uploads%2Farticles%2FIMG_9248.JPG_jvdz7piq_2019_5_8_0_56?alt=media&token=b0f782db-7d11-4566-9f47-434d3a434c2a" />
+        <img src={card.image} />
       </div>
       <div className="bottomContents">
         <div className="heading">
-          白黒写真、色付き線を引いただけでカラー写真に？　ふしぎな錯視が発見され話題
+          { card.title }
         </div>
         <div className="postedDate">
           2019/8/12
