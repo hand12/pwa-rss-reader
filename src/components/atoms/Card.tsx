@@ -108,7 +108,7 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
   return (
     <div className={cardClassNames} id={card.id} style={{ transform: transformString() }}>
       <div className="imageContainer">
-        <img src={card.image} />
+        { card.image ? <img src={card.image} /> : <span className="noImage">No Image </span> }
       </div>
       <div className="bottomContents">
         <div className="heading">
