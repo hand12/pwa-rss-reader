@@ -25,15 +25,20 @@ const Cards: FC<CardsProps> = ({ cards, swipeCard }) => {
         setIsDisplayRightLabel(true)
         setIsDisplayLeftLabel(false)
         break
+      case 'HIDDEN':
+        console.log('called??')
+        setIsDisplayRightLabel(false)
+        setIsDisplayLeftLabel(false)
+        break
     }
   }
 
   useEffect(() => {
-    console.log('created')
-  }, [])
+    console.log('changed!!')
+  }, [isDisplayLeftLabel, isDisplayRightLabel])
 
-  const leftLabelClassNames = classNames('label', { 'isDisplay' : isDisplayLeftLabel })
-  const rightLabelClassNames = classNames('label', { 'isDisplay' : isDisplayRightLabel })
+  const leftLabelClassNames = classNames('label', 'skip', { 'isDisplay' : isDisplayLeftLabel })
+  const rightLabelClassNames = classNames('label', 'read', { 'isDisplay' : isDisplayRightLabel })
 
   return (
     <div className="mainContainer">

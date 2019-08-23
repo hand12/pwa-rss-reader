@@ -34,9 +34,10 @@
   .bottomContents {
     padding: 16px;
     .heading {
-      height: 80px;
+      $fontSize: 16px;
+      height: calc($fontSize * 3 + 8px);
       text-align: left;
-      font-size: 16px;
+      font-size: $fontSize;
       font-weight: bold;
       @include text-reader(3);
     }

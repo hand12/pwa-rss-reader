@@ -14,18 +14,36 @@
   top: 50%;
   left: 0;
   right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   .label {
-    opacity: 0;
-    font-size: 12px;
+    display: none;
+    width: 80px;
+    text-align: center;
+    font-size: 16px;
     font-weight: bold;
-    transition: 0.7s;
-    background: gray;
+    transition: 0.2s;
     padding: 8px;
   }
   .isDisplay {
-    opacity: 1;
+    display: block;
+    @include materialShadow();
+  }
+  .skip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid $darkGray;
+    border-radius: 4px;
+    color: $darkGray;
+    background: white;
+    transform: rotate(-10deg);
+  }
+  .read {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 4px;
+    color: white;
+    background: $mainColor;
+    transform: rotate(10deg);
   }
 }
