@@ -1,8 +1,10 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { InitialStateType } from '../../ducks/feeds/reducers'
+import { InitialStateType as cardsInitialState } from '../../ducks/cards/reducers'
 import { FeedsActions } from '../../ducks/feeds/actions'
 import TopPageContents from '../organisms/TopPageContents'
+
+type InitialStateType = cardsInitialState
 
 function mapDispatchToProps(dispatch: Dispatch) {
   return {

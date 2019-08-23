@@ -3,6 +3,7 @@ import { from } from 'rxjs'
 import { map, ignoreElements, switchMap } from 'rxjs/operators'
 import { getFeeds } from './api'
 import { FeedsActions } from './actions'
+import { CardsActions } from '../cards/actions'
 import { Feed } from './types'
 
 export const GetFeedsEpic = (actions$: any) => (
@@ -11,7 +12,10 @@ export const GetFeedsEpic = (actions$: any) => (
     switchMap((action: any) => {
       return from(getFeeds('genre'))
         .pipe(
-          map((feeds: Feed[]) => FeedsActions.setFeeds(feeds))
+          map((feeds: Feed[]) => {
+            const cards = feeds.slice(0, 10).map(feed => Object.assign({}, feed, { swiped: false }))
+            return CardsActions.setCards(cards)
+          })
         )
     }),
     // ignoreElements()

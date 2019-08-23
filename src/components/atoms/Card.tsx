@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import interact from 'interactjs'
 import classNames from 'classnames'
-import { Feed } from '../../ducks/feeds/types'
+import { Card as CardType } from '../../ducks/cards/types'
 import './Card.scss';
 
 interface CardProps {
@@ -10,22 +10,16 @@ interface CardProps {
   swipeCard(id: string): void
 }
 
-export interface CardType extends Feed {
-  swiped: boolean
-}
-
 const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
   const interactMaxRotation: number = 15
   const interactOutOfSightXCoordinate: number = 300
   const interactOutOfSightYCoordinate: number = 80
   const interactXThreshold: number = 10
 
-  // state
   const [ interactPosition, setInteractPosition] = useState({ x: 0, y: 0, rotation: 0 })
   const [ isInteractAnimating, setIsInteractAnimating] = useState(true)
   const [ isInteractDragged, setIsInteractDragged] = useState(false)
 
-  // functions
   const transformString = () => {
     if (!isInteractAnimating || isInteractDragged) {
       const { x, y, rotation } = interactPosition

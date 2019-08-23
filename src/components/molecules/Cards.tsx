@@ -1,19 +1,31 @@
 import React, { FC, useState, useEffect } from 'react'
 import Icon from '@material-ui/core/Icon'
 import classNames from 'classnames'
-import { CardType } from '../atoms/Card'
+import { Card as CardType } from '../../ducks/cards/types'
 import Card from '../atoms/Card'
 import './Cards.scss'
 
 interface CardsProps {
   cards: CardType[]
-  swipeCard(id: string): void
 }
 
-const Cards: FC<CardsProps> = ({ cards, swipeCard }) => {
+const Cards: FC<CardsProps> = ({ cards }) => {
 
+  const [ displayCards, setDisplayCards ] = useState<CardType[]>([])
   const [ isDisplayLeftLabel, setIsDisplayLeftLabel ] = useState(false)
   const [ isDisplayRightLabel, setIsDisplayRightLabel ] = useState(false)
+
+  const swipeCard = (id: string) => {
+    const card = displayCards.find(card => card.id === id)
+    if (!card) return
+
+    card.swiped = true
+
+    const cards = displayCards.filter(card => !card.swiped)
+    setTimeout(() => {
+      setDisplayCards(cards)
+    }, 250)
+  }
 
   const setDisplayLabel = (direct: string) => {
     switch(direct) {
@@ -26,7 +38,6 @@ const Cards: FC<CardsProps> = ({ cards, swipeCard }) => {
         setIsDisplayLeftLabel(false)
         break
       case 'HIDDEN':
-        console.log('called??')
         setIsDisplayRightLabel(false)
         setIsDisplayLeftLabel(false)
         break
@@ -34,8 +45,9 @@ const Cards: FC<CardsProps> = ({ cards, swipeCard }) => {
   }
 
   useEffect(() => {
-    console.log('changed!!')
-  }, [isDisplayLeftLabel, isDisplayRightLabel])
+    const displayCards = cards.slice(0, 10).map(card => Object.assign({}, card, { swiped: false }))
+    setDisplayCards(displayCards)
+  }, [cards])
 
   const leftLabelClassNames = classNames('label', 'skip', { 'isDisplay' : isDisplayLeftLabel })
   const rightLabelClassNames = classNames('label', 'read', { 'isDisplay' : isDisplayRightLabel })
@@ -45,7 +57,7 @@ const Cards: FC<CardsProps> = ({ cards, swipeCard }) => {
       <div className="cardsContainer">
         <div className="cards">
           {
-            cards.map(card => (
+            displayCards.map(card => (
               <Card card={ card } key={ card.id } setDisplayLabel={ (direct) => setDisplayLabel(direct) } swipeCard={ (id: string) => swipeCard(id) } />
             ))
           }
