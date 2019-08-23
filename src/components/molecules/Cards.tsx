@@ -24,7 +24,7 @@ const Cards: FC<CardsProps> = ({ cards }) => {
     const cards = displayCards.filter(card => !card.swiped)
     setTimeout(() => {
       setDisplayCards(cards)
-    }, 250)
+    }, 220)
   }
 
   const setDisplayLabel = (direct: string) => {
@@ -37,10 +37,6 @@ const Cards: FC<CardsProps> = ({ cards }) => {
         setIsDisplayRightLabel(true)
         setIsDisplayLeftLabel(false)
         break
-      case 'HIDDEN':
-        setIsDisplayRightLabel(false)
-        setIsDisplayLeftLabel(false)
-        break
     }
   }
 
@@ -48,6 +44,11 @@ const Cards: FC<CardsProps> = ({ cards }) => {
     const displayCards = cards.slice(0, 10).map(card => Object.assign({}, card, { swiped: false }))
     setDisplayCards(displayCards)
   }, [cards])
+
+  useEffect(() => {
+    setIsDisplayRightLabel(false)
+    setIsDisplayLeftLabel(false)
+  }, [displayCards])
 
   const leftLabelClassNames = classNames('label', 'skip', { 'isDisplay' : isDisplayLeftLabel })
   const rightLabelClassNames = classNames('label', 'read', { 'isDisplay' : isDisplayRightLabel })

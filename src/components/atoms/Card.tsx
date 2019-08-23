@@ -83,7 +83,6 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
           else if (x < -interactXThreshold) swipe('LEFT')
           return { x: 0, y: 0, rotation: 0 }
         })
-        setDisplayLabel('HIDDEN')
       },
     })
   }, [])
