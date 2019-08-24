@@ -14,6 +14,13 @@
 
 .cardsContents {
   width: 100%;
+  height: 500px;
   padding: 16px;
   box-sizing: border-box;
+}
+
+.stocksContents {
+  padding: 12px;
+  display: flex;
+  justify-content: flex-end;
 }

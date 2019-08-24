@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react'
 import { Card } from '../../ducks/cards/types'
 import { Stock } from '../../ducks/stocks/types'
 import Cards from '../molecules/Cards'
+import StockIcon from '../atoms/StockIcon'
 import './TopPageContents.scss'
 
 interface TopPageContentsProps {
@@ -27,7 +28,7 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
         <Cards cards={ cards } addStock={ addStock }/>
       </div>
       <div className="stocksContents">
-        stock count { stocks.length }
+        <StockIcon stocks={ stocks } />
       </div>
     </div>
   )

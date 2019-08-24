@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect } from 'react'
-import Icon from '@material-ui/core/Icon'
 import classNames from 'classnames'
 import { Card as CardType } from '../../ducks/cards/types'
 import Card from '../atoms/Card'

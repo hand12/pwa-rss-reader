@@ -1,0 +1,40 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
+.stockIcon {
+  position: relative;
+  $size: 60px;
+  width: $size;
+  height: $size;
+  border-radius: $size / 2;
+  background: $mainColor;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  @include materialShadow();
+  .materialIcon {
+    color: white;
+    font-size: 24px;
+  }
+  .stockLabel {
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+  }
+  .stockCount {
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    $size: 26px;
+    width: $size;
+    height: $size;
+    border-radius: $size / 2;
+    line-height: $size;
+    background: $red;
+    color: white;
+    @include materialShadow();
+  }
+}
