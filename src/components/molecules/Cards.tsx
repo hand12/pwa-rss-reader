@@ -3,13 +3,15 @@ import Icon from '@material-ui/core/Icon'
 import classNames from 'classnames'
 import { Card as CardType } from '../../ducks/cards/types'
 import Card from '../atoms/Card'
+import { Stock } from '../../ducks/stocks/types'
 import './Cards.scss'
 
 interface CardsProps {
+  addStock(stock: Stock): void,
   cards: CardType[]
 }
 
-const Cards: FC<CardsProps> = ({ cards }) => {
+const Cards: FC<CardsProps> = ({ cards, addStock }) => {
 
   const [ displayCards, setDisplayCards ] = useState<CardType[]>([])
   const [ isDisplayLeftLabel, setIsDisplayLeftLabel ] = useState(false)
@@ -24,6 +26,8 @@ const Cards: FC<CardsProps> = ({ cards }) => {
     const cards = displayCards.filter(card => !card.swiped)
     setTimeout(() => {
       setDisplayCards(cards)
+      const stock = Object.assign({}, card, { isRead: false })
+      addStock(stock)
     }, 220)
   }
 

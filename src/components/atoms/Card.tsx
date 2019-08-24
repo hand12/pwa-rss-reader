@@ -29,7 +29,9 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
   }
 
   const swipe = (direct: string) => {
-    const element = document.getElementsByClassName('card')[0]
+    const element = document.getElementById(card.id)
+    if (!element) return
+
     interact(element).unset()
 
     switch(direct) {
@@ -99,9 +101,9 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
   }, [card])
 
   return (
-    <div className={cardClassNames} id={card.id} style={{ transform: transformString() }}>
+    <div className={ cardClassNames } id={ card.id } style={{ transform: transformString() }}>
       <div className="imageContainer">
-        { card.image ? <img src={card.image} /> : <span className="noImage">No Image </span> }
+        { card.image ? <img src={ card.image } /> : <span className="noImage">No Image </span> }
       </div>
       <div className="bottomContents">
         <div className="heading">

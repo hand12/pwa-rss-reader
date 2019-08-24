@@ -25,6 +25,7 @@ export const apiFeedList = functions.https.onRequest(async (req, res) => {
   const feeds = await getFeeds('Gadget')
 
   res.set('Access-Control-Allow-Origin', 'http://localhost:3000')
+  res.set('Access-Control-Allow-Origin', 'http://192.168.1.6:3000')
   res.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST')
   res.set('Access-Control-Allow-Headers', 'Content-Type')
   res.set('Cache-Control', 'public, max-age=300, s-maxage=600')
