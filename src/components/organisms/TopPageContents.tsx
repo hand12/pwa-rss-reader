@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import { Card } from '../../ducks/cards/types'
 import { Stock } from '../../ducks/stocks/types'
 import Cards from '../molecules/Cards'

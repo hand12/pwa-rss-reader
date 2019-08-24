@@ -13,7 +13,9 @@ export const GetFeedsEpic = (actions$: any) => (
       return from(getFeeds('genre'))
         .pipe(
           map((feeds: Feed[]) => {
-            const cards = feeds.slice(0, 10).map(feed => Object.assign({}, feed, { swiped: false }))
+            const cards = feeds.slice(0, 10).map(feed => Object.assign(
+              {}, feed, { swiped: false }, { publishAt: new Date(feed.pubDate._seconds * 1000) })
+            )
             return CardsActions.setCards(cards)
           })
         )

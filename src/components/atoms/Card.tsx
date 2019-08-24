@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import interact from 'interactjs'
 import classNames from 'classnames'
+import Moment from 'react-moment'
 import { Card as CardType } from '../../ducks/cards/types'
 import './Card.scss';
 
@@ -98,6 +99,7 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
 
   useEffect(() => {
     console.log('created Card!')
+    console.log(card.publishAt)
   }, [card])
 
   return (
@@ -109,8 +111,11 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
         <div className="heading">
           { card.title }
         </div>
-        <div className="postedDate">
-          2019/8/12
+        <div className="postedDateContents">
+          <span className="postDate">
+            <Moment date={ card.publishAt } format="YYYY/M/D" />
+          </span>
+          <span className="dateLabel">更新</span>
         </div>
       </div>
     </div>

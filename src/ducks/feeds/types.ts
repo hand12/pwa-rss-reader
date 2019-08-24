@@ -5,6 +5,8 @@ export interface Feed {
   title: string
   link: string
   image: string
-  pubDate: Date
+  pubDate: {
+    _seconds: number
+  }
   createdAt: Date
 }
