@@ -1,0 +1,9 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
+.mainContents {
+  width: 100vw;
+  max-width: 500px;
+  height: 100vh;
+  background: $backgroundColor;
+}
