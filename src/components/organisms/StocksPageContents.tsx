@@ -5,10 +5,11 @@ import './StocksPageContents.scss'
 
 interface StocksPageContentsProps {
   readStock(id: string): void
+  removeStock(id: string): void
   stocks: Stock[]
 }
 
-const StocksPageContents: FC<StocksPageContentsProps> = ({ stocks, readStock }) => {
+const StocksPageContents: FC<StocksPageContentsProps> = ({ stocks, readStock, removeStock }) => {
 
   useEffect(() => {
     console.log('change stocks', stocks)
@@ -17,7 +18,10 @@ const StocksPageContents: FC<StocksPageContentsProps> = ({ stocks, readStock }) 
   return (
     <div className="mainContents">
       <div className="stocksContents">
-        <Stocks stocks={ stocks } readStock={ readStock } />
+        <Stocks stocks={ stocks } readStock={ readStock } removeStock={ removeStock } />
+      </div>
+      <div className="linksContents">
+        
       </div>
     </div>
   )

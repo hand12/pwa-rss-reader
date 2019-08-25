@@ -5,10 +5,11 @@ import './Stocks.scss'
 
 interface StocksProps {
   readStock(id: string): void
+  removeStock(id: string): void
   stocks: StockType[]
 }
 
-const Stocks: FC<StocksProps> = ({ stocks, readStock }) => {
+const Stocks: FC<StocksProps> = ({ stocks, readStock, removeStock }) => {
 
   return (
     <div className="mainContainer">
@@ -16,7 +17,7 @@ const Stocks: FC<StocksProps> = ({ stocks, readStock }) => {
         <div className="stocks">
           {
             stocks.map(stock => (
-              <Stock stock={ stock } key={ stock.id } readStock={ readStock }/>
+              <Stock stock={ stock } key={ stock.id } readStock={ readStock } removeStock={ removeStock } />
             ))
           }
         </div>

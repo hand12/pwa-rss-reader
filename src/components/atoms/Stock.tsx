@@ -5,6 +5,7 @@ import './Stock.scss'
 
 interface StockProps {
   readStock(id: string): void
+  removeStock(id: string): void
   stock: StockType
 }
 
@@ -16,24 +17,31 @@ const ReadLabel: FC<{}> = () => (
   <div className="readLabel">既読</div>
 )
 
-const Stock: FC<StockProps> = ({ stock, readStock }) => (
-  <a href={ stock.link } target="_blank" onClick={ () => readStock(stock.id) }>
-    <div className="stock">
-      <div className="leftContent">
-        <img src={ stock.image } />
-      </div>
-      <div className="rightContent">
-        <div className="title">
-          { stock.title }
+const Stock: FC<StockProps> = ({ stock, readStock, removeStock }) => (
+  <div className="stockContent">
+    <a href={ stock.link } target="_blank" onClick={ () => readStock(stock.id) }>
+      <div className="stock">
+        <div className="leftContent">
+          <img src={ stock.image } />
         </div>
-        <div className="publishAt">
-          <Moment date={ stock.publishAt } format="YYYY/M/D" />
-          <span className="dateLabel">更新</span>
+        <div className="rightContent">
+          <div className="title">
+            { stock.title }
+          </div>
+          <div className="publishAt">
+            <Moment date={ stock.publishAt } format="YYYY/M/D" />
+            <span className="dateLabel">更新</span>
+          </div>
+          { stock.isRead ? <ReadLabel /> : <NotReadLabel /> }
         </div>
-        { stock.isRead ? <ReadLabel /> : <NotReadLabel /> }
       </div>
+    </a>
+    <div className="removeButtonContent">
+      <span className="removeButton" onClick={ () => removeStock(stock.id) }>
+        削除する
+      </span>
     </div>
-  </a>
+  </div>
 )
 
 export default Stock

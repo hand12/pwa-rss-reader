@@ -20,6 +20,8 @@ export const stocksReducer = (state: InitialStateType = initialState, action: Ac
         return stock
       })
       return stocks
+    case 'REMOVE_STOCK':
+      return state.filter(stock => stock.id !== action.payload)
     default:
       return state
   }
