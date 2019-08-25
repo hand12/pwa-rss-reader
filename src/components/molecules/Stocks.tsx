@@ -1,21 +1,24 @@
-import React, { FC, useState, useEffect } from 'react'
-import classNames from 'classnames'
-import { Stock } from '../../ducks/stocks/types'
+import React, { FC } from 'react'
+import { Stock as StockType } from '../../ducks/stocks/types'
+import Stock from '../atoms/Stock'
 import './Stocks.scss'
 
 interface StocksProps {
-  stocks: Stock[]
+  readStock(id: string): void
+  stocks: StockType[]
 }
 
-const Stocks: FC<StocksProps> = ({ stocks }) => {
+const Stocks: FC<StocksProps> = ({ stocks, readStock }) => {
 
   return (
     <div className="mainContainer">
       <div className="stocksContainer">
         <div className="stocks">
-          <div className="stock">
-            Hellow Stocks
-          </div>
+          {
+            stocks.map(stock => (
+              <Stock stock={ stock } key={ stock.id } readStock={ readStock }/>
+            ))
+          }
         </div>
       </div>
     </div>

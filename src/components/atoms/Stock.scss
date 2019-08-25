@@ -1,0 +1,71 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
+.stock {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  @include materialShadow();
+  .leftContent {
+    border-radius: 8px 0 0 8px;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .rightContent {
+    position: relative;
+    width: calc(100% - 100px);
+    height: 100px;
+    padding: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .title {
+      $row: 2;
+      $fontSize: 16px;
+      $lineHeight: $fontSize * 1.5;
+      height: calc(#{$lineHeight} * #{$row});
+      line-height: $lineHeight;
+      text-align: left;
+      font-size: $fontSize;
+      font-weight: bold;
+      color: $fontColor;
+      @include text-reader($row);
+    }
+    .publishAt {
+      text-align: right;
+      color: $darkGray;
+      font-size: 12px;
+    }
+    .notReadLabel {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      font-size: 12px;
+      font-weight: bold;
+      background: $mainColor;
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: white;
+    }
+    .readLabel {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid $darkGray;
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: $darkGray;
+    }
+  }
+}

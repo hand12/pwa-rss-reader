@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Icon from '@material-ui/core/Icon'
 import { Stock } from '../../ducks/stocks/types'
 import './StockIcon.scss'

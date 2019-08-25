@@ -11,7 +11,7 @@ interface InitialStateType {
 
 function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    addStock: (stock: Stock) => dispatch(StocksActions.addStock(stock))
+    readStock: (id: string) => dispatch(StocksActions.readStock(id))
   }
 }
 

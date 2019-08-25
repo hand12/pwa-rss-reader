@@ -25,7 +25,12 @@ const Cards: FC<CardsProps> = ({ cards, addStock }) => {
     const cards = displayCards.filter(card => !card.swiped)
     setTimeout(() => {
       setDisplayCards(cards)
-      const stock = Object.assign({}, card, { isRead: false })
+      const stock = Object.assign(
+        {},
+        card,
+        { isRead: false },
+        { publishAt: new Date(card.pubDate._seconds * 1000) }
+      )
       addStock(stock)
     }, 220)
   }
