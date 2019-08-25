@@ -24,3 +24,20 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.genreListContents {
+  padding: 16px;
+  a {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 80%;
+    margin: 0 auto;
+    background: $mainColor;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 12px;
+    @include materialShadow();
+  }
+}

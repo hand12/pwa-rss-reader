@@ -12,7 +12,7 @@ interface ActionType {
 export const cardsReducer = (state: InitialStateType = initialState, action: ActionType) => {
   switch(action.type) {
     case 'SET_CARDS':
-      return state.concat(action.payload)
+      return action.payload
     default:
       return state
   }

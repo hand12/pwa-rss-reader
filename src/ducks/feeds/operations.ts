@@ -10,7 +10,7 @@ export const GetFeedsEpic = (actions$: any) => (
   actions$.pipe(
     ofType(FeedsActions.getFeeds),
     switchMap((action: any) => {
-      return from(getFeeds('genre'))
+      return from(getFeeds(action.payload))
         .pipe(
           map((feeds: Feed[]) => {
             const cards = feeds.slice(0, 10).map(feed => Object.assign(

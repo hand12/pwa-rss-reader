@@ -22,7 +22,7 @@ export const updateFeeds = functions.pubsub.schedule('00 6 * * *').onRun(async (
 })
 
 export const apiFeedList = functions.https.onRequest(async (req, res) => {
-  const feeds = await getFeeds('Gadget')
+  const feeds = await getFeeds(req.query.genre)
 
   res.set('Access-Control-Allow-Origin', 'http://localhost:3000')
   res.set('Access-Control-Allow-Origin', 'http://192.168.1.6:3000')

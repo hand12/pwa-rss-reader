@@ -3,6 +3,7 @@ import interact from 'interactjs'
 import classNames from 'classnames'
 import Moment from 'react-moment'
 import { Card as CardType } from '../../ducks/cards/types'
+import { GENRES } from '../organisms/TopPageContents'
 import './Card.scss';
 
 interface CardProps {
@@ -10,6 +11,17 @@ interface CardProps {
   setDisplayLabel: (direct: string) => void
   swipeCard(id: string): void
 }
+
+const PROVIDERS = [
+  {
+    name: 'gizmodo',
+    label: 'GIZMODE'
+  },
+  {
+    name: 'toyokeizai',
+    label: '東洋経済'
+  }
+]
 
 const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
   const interactMaxRotation: number = 15
@@ -27,6 +39,20 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
       return `translate3D(${x}px, ${y}px, 0) rotate(${rotation}deg)`
     }
     return undefined
+  }
+
+  const convertGenre = () => {
+    const genre = GENRES.find(g => g.name === card.genre)
+
+    if (!genre) return 'No Category'
+    return genre.label
+  }
+
+  const convertProvider = () => {
+    const provider = PROVIDERS.find(p => p.name === card.provider)
+
+    if (!provider) return 'No Provider'
+    return provider.label
   }
 
   const swipe = (direct: string) => {
@@ -97,17 +123,16 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
 
   }, [interactPosition.x])
 
-  useEffect(() => {
-    console.log('created Card!')
-    console.log(card.publishAt)
-  }, [card])
-
   return (
     <div className={ cardClassNames } id={ card.id } style={{ transform: transformString() }}>
       <div className="imageContainer">
         { card.image ? <img src={ card.image } /> : <span className="noImage">No Image </span> }
       </div>
       <div className="bottomContents">
+        <div className="providerInfo">
+          <div className="genre">{ convertGenre() }</div>
+          <div className="provider">{ convertProvider() }</div>
+        </div>
         <div className="heading">
           { card.title }
         </div>

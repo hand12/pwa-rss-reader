@@ -33,6 +33,28 @@
   }
   .bottomContents {
     padding: 16px;
+    text-align: left;
+    .providerInfo {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 8px;
+      .genre {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: bold;
+        border: 1px solid $darkGray;
+        padding: 2px 8px;
+        border-radius: 4px;
+        color: $darkGray;
+        margin-right: 8px;
+      }
+      .provider {
+        font-size: 12px;
+        font-weight: bold;
+        color: $darkGray;
+      }
+    }
     .heading {
       $fontSize: 16px;
       $lineHeight: $fontSize * 1.5;

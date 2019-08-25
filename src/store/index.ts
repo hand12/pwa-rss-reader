@@ -16,7 +16,7 @@ const rootReducer = combineReducers({ cards: cardsReducer, stocks: stocksReducer
 const persistConfig = {
   key: 'RssReader',
   storage,
-  whitelist: ['cards', 'stocks']
+  whitelist: ['stocks']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

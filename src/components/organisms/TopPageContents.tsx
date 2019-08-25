@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Card } from '../../ducks/cards/types'
 import { Stock } from '../../ducks/stocks/types'
 import Cards from '../molecules/Cards'
@@ -12,10 +13,27 @@ interface TopPageContentsProps {
   stocks: Stock[]
 }
 
+export const GENRES = [
+  {
+    name: 'Gadget',
+    label: 'ガジェット'
+  },
+  {
+    name: 'Economy',
+    label: '経済'
+  }
+]
+
 const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, stocks }) => {
+  const getCards = (genre: string) => {
+    if (GENRES.some(g => g.name === genre)) { getFeeds(genre!) }
+    else getFeeds('Gadget')
+  }
 
   useEffect(() => {
-    getFeeds('genre')
+    const param = new URLSearchParams(window.location.search)
+    const genre = param.get('genre') || 'Gadget'
+    getCards(genre)
   }, [])
 
   return (
@@ -25,6 +43,10 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
       </div>
       <div className="stocksContents">
         <StockIcon stocks={ stocks } />
+      </div>
+      <div className="genreListContents">
+        <Link to="?genre=Gadget" onClick={ () => getCards('Gadget') }>ガジェットのニュースを探す</Link>
+        <Link to="?genre=Economy" onClick={ () => getCards('Economy') }>経済のニュースを探す</Link>
       </div>
     </div>
   )
