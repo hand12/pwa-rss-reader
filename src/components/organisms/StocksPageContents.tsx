@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import Stocks from '../molecules/Stocks'
 import { Stock } from '../../ducks/stocks/types'
@@ -10,24 +10,17 @@ interface StocksPageContentsProps {
   stocks: Stock[]
 }
 
-const StocksPageContents: FC<StocksPageContentsProps> = ({ stocks, readStock, removeStock }) => {
-
-  useEffect(() => {
-    console.log('change stocks', stocks)
-  }, [stocks])
-
-  return (
-    <div className="mainContents">
-      <div className="stocksContents">
-        <Stocks stocks={ stocks } readStock={ readStock } removeStock={ removeStock } />
-      </div>
-      <div className="linksContents">
-        <Link to="/">
-          記事一覧へ戻る
-        </Link>
-      </div>
+const StocksPageContents: FC<StocksPageContentsProps> = ({ stocks, readStock, removeStock }) => (
+  <div className="mainContents">
+    <div className="stocksContents">
+      <Stocks stocks={ stocks } readStock={ readStock } removeStock={ removeStock } />
     </div>
-  )
-}
+    <div className="linksContents">
+      <Link to="/">
+        記事一覧へ戻る
+      </Link>
+    </div>
+  </div>
+)
 
 export default StocksPageContents

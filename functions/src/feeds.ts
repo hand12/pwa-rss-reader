@@ -1,27 +1,13 @@
 import { deleteCollection } from './utils/firebase'
+import { Converter } from './providers/converter'
+import { PROVIDERS } from './providers'
 
 const RssParser = require('rss-parser')
 const admin = require('firebase-admin')
 const db = admin.firestore()
 const feedsRef = db.collection('feeds')
 
-interface Item {
-  creator: string
-  title: string
-  link: string
-  pubDate: string
-  enclosure: {
-    type: string
-    url: string
-  }
-  content: string
-  contentSnippet: string
-  guid: string
-  categories: string
-  isoDate: string
-}
-
-interface Feed {
+export interface Feed {
   genre: string
   provider: string
   title: string
@@ -33,7 +19,8 @@ interface Feed {
 
 export const fetchFeeds = async () => {
   const feeds = [
-    ...await fetchFeedsFromProvider('gizmodo')
+    ...await fetchFeedsFromProvider('gizmodo'),
+    ...await fetchFeedsFromProvider('toyokeizai'),
   ]
   console.log('get feeds', feeds)
   return feeds
@@ -74,25 +61,8 @@ const fetchFeedsFromProvider = async (name: string) => {
     console.error(e.message)
   })
 
-  const feeds = res.items.map((item: Item) => {
-    return {
-      genre: provider.genre,
-      provider: provider.name,
-      title: item.title,
-      link: item.link,
-      image: item.enclosure.type === 'image/jpeg' ? item.enclosure.url : '',
-      pubDate: new Date(item.pubDate),
-      createdAt: new Date
-    }
-  })
+  const converter = new Converter(provider.name)
+  const feeds = converter.convert(res.items)
 
   return feeds
 }
-
-const PROVIDERS = [
-  {
-    name: 'gizmodo',
-    url: 'http://feeds.gizmodo.jp/rss/gizmodo/index.xml',
-    genre: 'Gadget'
-  }
-]

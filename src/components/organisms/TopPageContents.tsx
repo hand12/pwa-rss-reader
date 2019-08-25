@@ -18,10 +18,6 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
     getFeeds('genre')
   }, [])
 
-  useEffect(() => {
-    console.log('change stocks', stocks)
-  }, [stocks])
-
   return (
     <div className="mainContents">
       <div className="cardsContents">

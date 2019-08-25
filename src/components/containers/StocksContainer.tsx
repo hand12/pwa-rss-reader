@@ -2,7 +2,6 @@ import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { InitialStateType as StocksInitialState } from '../../ducks/stocks/reducers'
 import { StocksActions } from '../../ducks/stocks/actions'
-import { Stock } from '../../ducks/stocks/types'
 import StocksPageContents from '../organisms/StocksPageContents'
 
 interface InitialStateType {
