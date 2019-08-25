@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react'
+import Stocks from '../molecules/Stocks'
 import { Stock } from '../../ducks/stocks/types'
 import './StocksPageContents.scss'
 
@@ -15,7 +16,7 @@ const StocksPageContents: FC<StocksPageContentsProps> = ({ stocks }) => {
   return (
     <div className="mainContents">
       <div className="stocksContents">
-        <h1>Hello World</h1>
+        <Stocks stocks={ stocks } />
       </div>
     </div>
   )
