@@ -6,4 +6,21 @@
   max-width: 500px;
   height: 100vh;
   background: $backgroundColor;
+  .linksContents {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    a {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 80%;
+      margin: 0 auto;
+      background: $mainColor;
+      border-radius: 8px;
+      padding: 12px;
+      font-weight: bold;
+      color: white;
+      @include materialShadow();
+    }
+  }
 }
