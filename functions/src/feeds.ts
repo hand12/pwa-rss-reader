@@ -21,6 +21,7 @@ export const fetchFeeds = async () => {
   const feeds = [
     ...await fetchFeedsFromProvider('gizmodo'),
     ...await fetchFeedsFromProvider('toyokeizai'),
+    ...await fetchFeedsFromProvider('cnn'),
   ]
   console.log('get feeds', feeds)
   return feeds
