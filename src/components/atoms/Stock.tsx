@@ -22,7 +22,7 @@ const Stock: FC<StockProps> = ({ stock, readStock, removeStock }) => (
     <a href={ stock.link } target="_blank" onClick={ () => readStock(stock.id) }>
       <div className="stock">
         <div className="leftContent">
-          <img src={ stock.image } />
+          { stock.image ? <img src={ stock.image } /> : <span className="noImage">No Image </span> }
         </div>
         <div className="rightContent">
           <div className="title">

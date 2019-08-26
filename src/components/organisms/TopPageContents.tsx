@@ -21,6 +21,10 @@ export const GENRES = [
   {
     name: 'Economy',
     label: '経済'
+  },
+  {
+    name: 'Global',
+    label: '海外'
   }
 ]
 
@@ -39,7 +43,7 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
   return (
     <div className="mainContents">
       <div className="cardsContents">
-        <Cards cards={ cards } addStock={ addStock }/>
+        <Cards cards={ cards } addStock={ addStock } />
       </div>
       <div className="stocksContents">
         <StockIcon stocks={ stocks } />
@@ -47,6 +51,7 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
       <div className="genreListContents">
         <Link to="?genre=Gadget" onClick={ () => getCards('Gadget') }>ガジェットのニュースを探す</Link>
         <Link to="?genre=Economy" onClick={ () => getCards('Economy') }>経済のニュースを探す</Link>
+        <Link to="?genre=Global" onClick={ () => getCards('Global') }>海外のニュースを探す</Link>
       </div>
     </div>
   )

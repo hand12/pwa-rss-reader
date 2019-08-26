@@ -3,6 +3,7 @@ import interact from 'interactjs'
 import classNames from 'classnames'
 import Moment from 'react-moment'
 import { Card as CardType } from '../../ducks/cards/types'
+import { Stock } from '../../ducks/stocks/types'
 import { GENRES } from '../organisms/TopPageContents'
 import './Card.scss';
 
@@ -10,6 +11,7 @@ interface CardProps {
   card: CardType
   setDisplayLabel: (direct: string) => void
   swipeCard(id: string): void
+  addStock(stock: Stock): void,
 }
 
 const PROVIDERS = [
@@ -20,10 +22,14 @@ const PROVIDERS = [
   {
     name: 'toyokeizai',
     label: '東洋経済'
+  },
+  {
+    name: 'cnn',
+    label: 'CNN'
   }
 ]
 
-const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
+const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard, addStock }) => {
   const interactMaxRotation: number = 15
   const interactOutOfSightXCoordinate: number = 300
   const interactOutOfSightYCoordinate: number = 80
@@ -55,6 +61,16 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
     return provider.label
   }
 
+  const createStock = () => {
+    const stock = Object.assign(
+      {},
+      card,
+      { isRead: false },
+      { publishAt: new Date(card.pubDate._seconds * 1000) }
+    )
+    return stock
+  }
+
   const swipe = (direct: string) => {
     const element = document.getElementById(card.id)
     if (!element) return
@@ -77,6 +93,8 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard }) => {
           y: interactOutOfSightYCoordinate,
           rotation: interactMaxRotation
         })
+        const stock = createStock()
+        addStock(stock)
         break
     }
   }

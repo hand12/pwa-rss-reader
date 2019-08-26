@@ -25,13 +25,6 @@ const Cards: FC<CardsProps> = ({ cards, addStock }) => {
     const cards = displayCards.filter(card => !card.swiped)
     setTimeout(() => {
       setDisplayCards(cards)
-      const stock = Object.assign(
-        {},
-        card,
-        { isRead: false },
-        { publishAt: new Date(card.pubDate._seconds * 1000) }
-      )
-      addStock(stock)
     }, 220)
   }
 
@@ -67,7 +60,12 @@ const Cards: FC<CardsProps> = ({ cards, addStock }) => {
         <div className="cards">
           {
             displayCards.map(card => (
-              <Card card={ card } key={ card.id } setDisplayLabel={ (direct) => setDisplayLabel(direct) } swipeCard={ (id: string) => swipeCard(id) } />
+              <Card
+                card={ card }
+                key={ card.id }
+                setDisplayLabel={ (direct) => setDisplayLabel(direct) }
+                swipeCard={ (id: string) => swipeCard(id) }
+                addStock={ addStock } />
             ))
           }
         </div>
