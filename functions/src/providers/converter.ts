@@ -1,6 +1,7 @@
 import { converter as convertForGizmode } from './gizmode/converter'
 import { converter as convertForToyokeizai } from './toyokeizai/converter'
 import { converter as convertForCnn } from './cnn/converter'
+import { converter as convertForCnet } from './cnet/converter'
 
 export class Converter {
   name: string
@@ -19,6 +20,9 @@ export class Converter {
     }
     else if (this.name === 'cnn') {
       return convertForCnn(items)
+    }
+    else if (this.name === 'cnet') {
+      return convertForCnet(items)
     }
     else {
       console.error('converter not found', items)

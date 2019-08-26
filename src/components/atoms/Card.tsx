@@ -26,6 +26,10 @@ const PROVIDERS = [
   {
     name: 'cnn',
     label: 'CNN'
+  },
+  {
+    name: 'cnet',
+    label: 'CNET'
   }
 ]
 

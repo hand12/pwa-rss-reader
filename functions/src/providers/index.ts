@@ -19,6 +19,11 @@ export const PROVIDERS = [
     name: 'cnn',
     url: 'http://feeds.cnn.co.jp/rss/cnn/cnn.rdf',
     genre: 'Global'
+  },
+  {
+    name: 'cnet',
+    url: 'http://feeds.japan.cnet.com/rss/cnet/all.rdf',
+    genre: 'Technology'
   }
 ]
 
