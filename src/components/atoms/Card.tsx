@@ -30,6 +30,10 @@ const PROVIDERS = [
   {
     name: 'cnet',
     label: 'CNET'
+  },
+  {
+    name: 'techCrunch',
+    label: 'TechCrunch'
   }
 ]
 
