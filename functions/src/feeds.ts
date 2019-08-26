@@ -1,4 +1,5 @@
-import { deleteCollection } from './utils/firebase'
+import { deleteDocs } from './utils/firebase/deleteDocs'
+import { saveDocs } from './utils/firebase/saveDocs'
 import { Converter } from './providers/converter'
 import { PROVIDERS } from './providers'
 
@@ -27,20 +28,18 @@ export const fetchFeeds = async () => {
   return feeds
 }
 
-export const saveFeeds = (feeds: Feed[]) => {
-  return Promise.all(
-    feeds.map(async feed => await feedsRef.add(feed))
-  )
-  .catch((e) => {
-    console.log('Error, save feeds', feeds)
-    console.error(e.message)
-  })
+export const saveFeeds = async (feeds: Feed[]) => {
+  await saveDocs(feedsRef, feeds)
+    .catch((e) => {
+      console.log('Error, save feeds', feeds)
+      console.error(e.message)
+    })
 }
 
 export const deleteFeeds = async () => {
   const yesterday = getYesterday()
   const yesterdayFeedsRef = await feedsRef.where("createdAt",  "<=", yesterday)
-  await deleteCollection(yesterdayFeedsRef)
+  await deleteDocs(yesterdayFeedsRef)
   console.log('called deleteFeeds')
 }
 

@@ -1,6 +1,6 @@
 const admin = require('firebase-admin')
 
-export async function deleteCollection(collectionRef: any, batchSize: number = 500) {
+export async function deleteDocs(collectionRef: any, batchSize: number = 500) {
   const firestore = admin.firestore()
   const query = collectionRef.limit(batchSize)
   await deleteQueryBatch(firestore, query, batchSize)
@@ -18,7 +18,6 @@ async function deleteQueryBatch(firestore: FirebaseFirestore.Firestore, query: a
   // Delete documents in a batch
   const results = await execute(async (batch) => {
     snapshot.docs.forEach((doc: any) => {
-      console.log('in batch', doc)
       batch.delete(doc.ref)
     })
   })
