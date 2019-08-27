@@ -21,6 +21,7 @@ export interface Feed {
 export const fetchFeeds = async () => {
   const feeds = [
     ...await fetchFeedsFromProvider('gizmodo'),
+    ...await fetchFeedsFromProvider('gadgetTsushin'),
     ...await fetchFeedsFromProvider('toyokeizai'),
     ...await fetchFeedsFromProvider('cnn'),
     ...await fetchFeedsFromProvider('cnet'),

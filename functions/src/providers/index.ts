@@ -11,6 +11,11 @@ export const PROVIDERS = [
     genre: 'Gadget'
   },
   {
+    name: 'gadgetTsushin',
+    url: 'https://getnews.jp/feed/ext/orig',
+    genre: 'Gadget'
+  },
+  {
     name: 'toyokeizai',
     url: 'https://toyokeizai.net/list/feed/rss',
     genre: 'Economy'

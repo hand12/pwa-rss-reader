@@ -1,4 +1,5 @@
 import { converter as convertForGizmode } from './gizmode/converter'
+import { converter as convertForGadgetTsushin } from './gadgetTsushin/converter'
 import { converter as convertForToyokeizai } from './toyokeizai/converter'
 import { converter as convertForCnn } from './cnn/converter'
 import { converter as convertForCnet } from './cnet/converter'
@@ -15,6 +16,9 @@ export class Converter {
   convert(items: any) {
     if (this.name === 'gizmodo') {
       return convertForGizmode(items)
+    }
+    else if (this.name === 'gadgetTsushin') {
+      return convertForGadgetTsushin(items)
     }
     else if (this.name === 'toyokeizai') {
       return convertForToyokeizai(items)

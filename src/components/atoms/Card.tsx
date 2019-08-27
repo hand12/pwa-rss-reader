@@ -20,6 +20,10 @@ const PROVIDERS = [
     label: 'GIZMODE'
   },
   {
+    name: 'gadgetTsushin',
+    label: 'ガジェット通信'
+  },
+  {
     name: 'toyokeizai',
     label: '東洋経済'
   },
