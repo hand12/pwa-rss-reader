@@ -21,8 +21,18 @@ export const PROVIDERS = [
     genre: 'Economy'
   },
   {
+    name: 'goo-business',
+    url: 'https://news.goo.ne.jp/rss/topstories/business/index.rdf',
+    genre: 'Economy'
+  },
+  {
     name: 'cnn',
     url: 'http://feeds.cnn.co.jp/rss/cnn/cnn.rdf',
+    genre: 'Global'
+  },
+  {
+    name: 'labaq',
+    url: 'http://labaq.com/index.rdf',
     genre: 'Global'
   },
   {

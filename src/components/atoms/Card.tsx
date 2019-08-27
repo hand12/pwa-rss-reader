@@ -28,8 +28,16 @@ const PROVIDERS = [
     label: '東洋経済'
   },
   {
+    name: 'goo-business',
+    label: 'gooニュース'
+  },
+  {
     name: 'cnn',
     label: 'CNN'
+  },
+  {
+    name: 'labaq',
+    label: 'らばQ'
   },
   {
     name: 'cnet',

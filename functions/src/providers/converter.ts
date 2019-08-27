@@ -1,7 +1,9 @@
 import { converter as convertForGizmode } from './gizmode/converter'
 import { converter as convertForGadgetTsushin } from './gadgetTsushin/converter'
 import { converter as convertForToyokeizai } from './toyokeizai/converter'
+import { converter as convertForGooBusiness } from './gooBusiness/converter'
 import { converter as convertForCnn } from './cnn/converter'
+import { converter as convertForLabaq } from './labaq/converter'
 import { converter as convertForCnet } from './cnet/converter'
 import { converter as convertForTechCrunch } from './techCrunch/converter'
 
@@ -23,8 +25,14 @@ export class Converter {
     else if (this.name === 'toyokeizai') {
       return convertForToyokeizai(items)
     }
+    else if (this.name === 'goo-business') {
+      return convertForGooBusiness(items)
+    }
     else if (this.name === 'cnn') {
       return convertForCnn(items)
+    }
+    else if (this.name === 'labaq') {
+      return convertForLabaq(items)
     }
     else if (this.name === 'cnet') {
       return convertForCnet(items)
