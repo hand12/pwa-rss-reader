@@ -49,7 +49,7 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
       <div className="cardsContents">
         <Cards cards={ cards } addStock={ addStock } />
       </div>
-      <div className="stocksContents">
+      <div className="stocksIconContents">
         <StockIcon stocks={ stocks } />
       </div>
       <div className="genreListContents">
