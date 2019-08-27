@@ -10,7 +10,13 @@
   width: 100vw;
   max-width: 500px;
   height: 100vh;
-  background: $backgroundColor;
+}
+
+.topImageContents {
+  width: 100%;
+  img {
+    width: 100%;
+  }
 }
 
 .cardsContents {
@@ -41,7 +47,7 @@
     border-radius: 8px;
     padding: 12px;
     font-weight: bold;
-    color: white;
+    color: $fontColor;
     margin-bottom: 12px;
     @include materialShadow();
   }

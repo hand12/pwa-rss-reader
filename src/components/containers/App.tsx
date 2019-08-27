@@ -7,9 +7,6 @@ import Stocks from '../pages/Stocks'
 const App: React.FC = () => {
   return (
     <div className="App">
-      <div className="header">
-        News
-      </div>
       <BrowserRouter>
         <Route exact path="/" component={ Top } />
         <Route path="/stocks" component={ Stocks } />

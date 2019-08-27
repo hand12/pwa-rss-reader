@@ -7,20 +7,20 @@
   width: $size;
   height: $size;
   border-radius: $size / 2;
-  background: $mainColor;
+  background: white;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   @include materialShadow();
   .materialIcon {
-    color: white;
+    color: $fontColor;
     font-size: 24px;
   }
   .stockLabel {
     font-size: 10px;
     font-weight: bold;
-    color: white;
+    color: $fontColor;
     text-decoration: none;
   }
   .stockCount {

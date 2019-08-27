@@ -4,6 +4,7 @@ import { Card } from '../../ducks/cards/types'
 import { Stock } from '../../ducks/stocks/types'
 import Cards from '../molecules/Cards'
 import StockIcon from '../atoms/StockIcon'
+import TopImage from '../../assets/images/topImage.png'
 import './TopPageContents.scss'
 
 interface TopPageContentsProps {
@@ -46,6 +47,9 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
 
   return (
     <div className="mainContents">
+      <div className="topImageContents">
+        <img src={ TopImage } />
+      </div>
       <div className="cardsContents">
         <Cards cards={ cards } addStock={ addStock } />
       </div>
