@@ -66,7 +66,7 @@
         border: 1px solid $mainColor;
         padding: 2px 8px;
         border-radius: 4px;
-        color: white;
+        color: $fontColor;
       }
       .readLabel {
         position: absolute;
@@ -87,6 +87,6 @@
   text-align: right;
   .removeButton {
     font-size: 12px;
-    color: $mainColor;
+    color: $blue;
   }
 }
