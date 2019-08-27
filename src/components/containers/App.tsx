@@ -11,6 +11,21 @@ const App: React.FC = () => {
         <Route exact path="/" component={ Top } />
         <Route path="/stocks" component={ Stocks } />
       </BrowserRouter>
+      {/* <div className="footer">
+        <div className="footerContents">
+          <div className="operatorContent">
+            <div className="label">運営者</div>
+            <div className="icon">
+              <a
+                href="https://twitter.com/hand12_k"
+                target="_blank"
+                rel="noopener noreferrer">
+                  twitter
+              </a>
+            </div>
+          </div>
+        </div>
+      </div> */}
     </div>
   );
 }
