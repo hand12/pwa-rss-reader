@@ -10,12 +10,32 @@
   width: 100vw;
   max-width: 500px;
   height: 100vh;
+  color: $fontColor;
 }
 
 .topImageContents {
   width: 100%;
   img {
     width: 100%;
+  }
+}
+
+.genreTitle {
+  padding: 4px;
+  font-size: 16px;
+  .genreLabel {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  &:after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: $mainColor;
+    margin: 0 auto;
+    margin-top: 4px;
+    border-radius: 4px;
   }
 }
 

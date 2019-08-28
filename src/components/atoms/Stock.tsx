@@ -19,7 +19,7 @@ const ReadLabel: FC<{}> = () => (
 
 const Stock: FC<StockProps> = ({ stock, readStock, removeStock }) => (
   <div className="stockContent">
-    <a href={ stock.link } target="_blank" onClick={ () => readStock(stock.id) }>
+    <a href={ stock.link } target="_blank" rel="noopener noreferrer" onClick={ () => readStock(stock.id) }>
       <div className="stock">
         <div className="leftContent">
           { stock.image ? <img src={ stock.image } /> : <span className="noImage">No Image </span> }

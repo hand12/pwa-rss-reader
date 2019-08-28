@@ -33,6 +33,18 @@ export const GENRES = [
   }
 ]
 
+const selectedGenre = () => {
+  const param = new URLSearchParams(window.location.search)
+  const genre = param.get('genre') || 'Gadget'
+  return genre
+}
+
+const genreLabel = () => {
+  const genreName = selectedGenre()
+  const genre = GENRES.find(g => g.name === genreName) || GENRES[0]
+  return genre.label
+}
+
 const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, stocks }) => {
   const getCards = (genre: string) => {
     if (GENRES.some(g => g.name === genre)) { getFeeds(genre!) }
@@ -40,8 +52,7 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
   }
 
   useEffect(() => {
-    const param = new URLSearchParams(window.location.search)
-    const genre = param.get('genre') || 'Gadget'
+    const genre = selectedGenre()
     getCards(genre)
   }, [])
 
@@ -49,6 +60,10 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
     <div className="mainContents">
       <div className="topImageContents">
         <img src={ TopImage } />
+      </div>
+      <div className="genreTitle">
+        <span className="genreLabel">{ genreLabel() }</span>
+        のニュース一覧
       </div>
       <div className="cardsContents">
         <Cards cards={ cards } addStock={ addStock } />
