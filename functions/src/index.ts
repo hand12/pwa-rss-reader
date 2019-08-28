@@ -24,7 +24,18 @@ export const updateFeeds = functions.pubsub.schedule('00 6 * * *').onRun(async (
 export const apiFeedList = functions.https.onRequest(async (req, res) => {
   const feeds = await getFeeds(req.query.genre)
 
-  res.set('Access-Control-Allow-Origin', 'http://localhost:3000')
+  const allowedOrigins = [
+    'http://localhost:3000',
+    'https://pwa-rss-reader-bcbc4.web.app/',
+    'http://192.168.1.6:3000'
+  ]
+
+  const origin = req.headers.origin
+  console.log(origin)
+
+  if (origin && typeof origin === 'string' && allowedOrigins.indexOf(origin) > -1) {
+    res.set('Access-Control-Allow-Origin', origin)
+  }
   res.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST')
   res.set('Access-Control-Allow-Headers', 'Content-Type')
   res.set('Cache-Control', 'public, max-age=300, s-maxage=600')
