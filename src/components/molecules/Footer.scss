@@ -1,0 +1,30 @@
+@import '../../styles/colors.scss';
+
+#footer {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  background: $footerBackgroundColor;
+  .operatorContent {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    .label {
+      color: white;
+      font-weight: bold;
+      font-size: 12px;
+      margin-right: 8px;
+    }
+    .icon {
+      a {
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+        .fa-twitter {
+          color: #1C8DEF;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
