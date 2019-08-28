@@ -4,6 +4,7 @@ import { Card } from '../../ducks/cards/types'
 import { Stock } from '../../ducks/stocks/types'
 import Cards from '../molecules/Cards'
 import StockIcon from '../atoms/StockIcon'
+import Loading from '../atoms/Loading'
 import TopImage from '../../assets/images/topImage.png'
 import './TopPageContents.scss'
 
@@ -12,6 +13,9 @@ interface TopPageContentsProps {
   addStock(stock: Stock): void,
   cards: Card[],
   stocks: Stock[]
+  feeds: {
+    loading: boolean
+  }
 }
 
 export const GENRES = [
@@ -45,7 +49,7 @@ const genreLabel = () => {
   return genre.label
 }
 
-const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, stocks }) => {
+const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, stocks, feeds }) => {
   const getCards = (genre: string) => {
     if (GENRES.some(g => g.name === genre)) { getFeeds(genre!) }
     else getFeeds('Gadget')
@@ -66,7 +70,9 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
         のニュース一覧
       </div>
       <div className="cardsContents">
-        <Cards cards={ cards } addStock={ addStock } />
+        {
+          feeds.loading ? <Loading /> : <Cards cards={ cards } addStock={ addStock } />
+        }
       </div>
       <div className="stocksIconContents">
         <StockIcon stocks={ stocks } />
