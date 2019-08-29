@@ -49,6 +49,11 @@ export const PROVIDERS = [
     name: 'lifehacker',
     url: 'https://www.lifehacker.jp/feed/index.xml',
     genre: 'Life'
+  },
+  {
+    name: 'itlifehack',
+    url: 'http://itlifehack.jp/index.rdf',
+    genre: 'Life'
   }
 ]
 

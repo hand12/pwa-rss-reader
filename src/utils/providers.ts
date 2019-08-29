@@ -34,6 +34,10 @@ export const PROVIDERS = [
   {
     name: 'lifehacker',
     label: 'ライフハッカー'
+  },
+  {
+    name: 'itlifehack',
+    label: 'ITライフハック'
   }
 ]
 

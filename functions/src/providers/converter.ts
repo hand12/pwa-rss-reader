@@ -7,6 +7,7 @@ import { converter as convertForLabaq } from './labaq/converter'
 import { converter as convertForCnet } from './cnet/converter'
 import { converter as convertForTechCrunch } from './techCrunch/converter'
 import { converter as convertForLifehacker } from './lifehacker/converter'
+import { converter as convertForItlifehack } from './itlifehack/converter'
 
 export class Converter {
   name: string
@@ -43,6 +44,9 @@ export class Converter {
     }
     else if (this.name === 'lifehacker') {
       return convertForLifehacker(items)
+    }
+    else if (this.name === 'itlifehack') {
+      return convertForItlifehack(items)
     }
     else {
       console.error('converter not found', items)
