@@ -84,7 +84,7 @@
   transition: transform 0.7s, max-height 0.7s;
 }
 
-$cardsPositionOffset: 10px;
+$cardsPositionOffset: 40px;
 $cardsScaleOffset: 0.08;
 $cardsTotal: 10;
 
@@ -95,7 +95,7 @@ $cardsTotal: 10;
   .card:nth-child(#{$i}) {
     z-index: $cardsTotal - $index;
     opacity: 1;
-    transform: translateY($translation) scale($scale);
+    transform: translateY(-$translation) scale($scale);
 
     @if $i >= 4 {
       display: none;

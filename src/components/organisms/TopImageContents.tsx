@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import TopImage from '../../assets/images/topImage.png'
+import TopImage from '../../assets/images/topImage.jpg'
 import './TopImageContents.scss'
 
 const TopImageContents: FC<{}> = () => (
