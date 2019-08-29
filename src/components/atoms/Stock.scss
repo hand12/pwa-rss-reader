@@ -41,7 +41,7 @@
       justify-content: space-between;
       .title {
         $row: 2;
-        $fontSize: 16px;
+        $fontSize: 14px;
         $lineHeight: $fontSize * 1.5;
         height: calc(#{$lineHeight} * #{$row});
         line-height: $lineHeight;
@@ -54,30 +54,36 @@
       .publishAt {
         text-align: right;
         color: $darkGray;
-        font-size: 12px;
+        font-size: 11px;
       }
-      .notReadLabel {
-        position: absolute;
-        bottom: 8px;
-        left: 8px;
-        font-size: 12px;
-        font-weight: bold;
-        background: $mainColor;
-        border: 1px solid $mainColor;
-        padding: 2px 8px;
-        border-radius: 4px;
-        color: $fontColor;
-      }
-      .readLabel {
-        position: absolute;
-        bottom: 8px;
-        left: 8px;
-        font-size: 12px;
-        font-weight: bold;
-        border: 1px solid $darkGray;
-        padding: 2px 8px;
-        border-radius: 4px;
-        color: $darkGray;
+      .labelInfoContents {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .notReadLabel {
+          font-size: 10px;
+          font-weight: bold;
+          background: $mainColor;
+          border: 1px solid $mainColor;
+          padding: 1px 4px;
+          border-radius: 4px;
+          color: $fontColor;
+          margin-right: 4px;
+        }
+        .readLabel {
+          font-size: 10px;
+          font-weight: bold;
+          border: 1px solid $darkGray;
+          padding: 1px 4px;
+          border-radius: 4px;
+          color: $darkGray;
+          margin-right: 4px;
+        }
+        .provider {
+          color: $darkGray;
+          font-size: 11px;
+          font-weight: bold;
+        }
       }
     }
   }

@@ -5,6 +5,7 @@ import Moment from 'react-moment'
 import { Card as CardType } from '../../ducks/cards/types'
 import { Stock } from '../../ducks/stocks/types'
 import GENRES from '../../utils/genres'
+import { convertProvider } from '../../utils/providers'
 import './Card.scss';
 
 interface CardProps {
@@ -13,41 +14,6 @@ interface CardProps {
   swipeCard(id: string): void
   addStock(stock: Stock): void,
 }
-
-const PROVIDERS = [
-  {
-    name: 'gizmodo',
-    label: 'GIZMODE'
-  },
-  {
-    name: 'gadgetTsushin',
-    label: 'ガジェット通信'
-  },
-  {
-    name: 'toyokeizai',
-    label: '東洋経済'
-  },
-  {
-    name: 'goo-business',
-    label: 'gooニュース'
-  },
-  {
-    name: 'cnn',
-    label: 'CNN'
-  },
-  {
-    name: 'labaq',
-    label: 'らばQ'
-  },
-  {
-    name: 'cnet',
-    label: 'CNET'
-  },
-  {
-    name: 'techCrunch',
-    label: 'TechCrunch'
-  }
-]
 
 const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard, addStock }) => {
   const interactMaxRotation: number = 15
@@ -62,7 +28,7 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard, addStock }) => 
   const transformString = () => {
     if (!isInteractAnimating || isInteractDragged) {
       const { x, y, rotation } = interactPosition
-      return `translate3D(${x}px, ${y}px, 0) rotate(${rotation}deg)`
+      return `translate3D(${x}px, 0, 0) rotate(${rotation}deg)`
     }
     return undefined
   }
@@ -72,13 +38,6 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard, addStock }) => 
 
     if (!genre) return 'No Category'
     return genre.label
-  }
-
-  const convertProvider = () => {
-    const provider = PROVIDERS.find(p => p.name === card.provider)
-
-    if (!provider) return 'No Provider'
-    return provider.label
   }
 
   const createStock = () => {
@@ -169,7 +128,7 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard, addStock }) => 
       <div className="bottomContents">
         <div className="providerInfo">
           <div className="genre">{ convertGenre() }</div>
-          <div className="provider">{ convertProvider() }</div>
+          <div className="provider">{ convertProvider(card.provider) }</div>
         </div>
         <div className="heading">
           { card.title }

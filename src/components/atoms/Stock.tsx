@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import Moment from 'react-moment'
 import { Stock as StockType } from '../../ducks/stocks/types'
+import { convertProvider } from '../../utils/providers'
 import './Stock.scss'
 
 interface StockProps {
@@ -28,11 +29,14 @@ const Stock: FC<StockProps> = ({ stock, readStock, removeStock }) => (
           <div className="title">
             { stock.title }
           </div>
+          <div className="labelInfoContents">
+            { stock.isRead ? <ReadLabel /> : <NotReadLabel /> }
+            <div className="provider">{ convertProvider(stock.provider) }</div>
+          </div>
           <div className="publishAt">
             <Moment date={ stock.publishAt } format="YYYY/M/D" />
             <span className="dateLabel">更新</span>
           </div>
-          { stock.isRead ? <ReadLabel /> : <NotReadLabel /> }
         </div>
       </div>
     </a>
