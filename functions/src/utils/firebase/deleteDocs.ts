@@ -22,7 +22,7 @@ async function deleteQueryBatch(firestore: FirebaseFirestore.Firestore, query: a
     })
   })
   console.log(`deleted count: ${results.length}`)
-  
+
   return await deleteQueryBatch(firestore, query, batchSize)
 }
 

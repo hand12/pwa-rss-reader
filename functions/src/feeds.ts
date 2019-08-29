@@ -45,7 +45,6 @@ export const deleteFeeds = async () => {
   const yesterday = getYesterday()
   const yesterdayFeedsRef = await feedsRef.where("createdAt",  "<=", yesterday)
   await deleteDocs(yesterdayFeedsRef)
-  console.log('called deleteFeeds')
 }
 
 const getYesterday = () => {

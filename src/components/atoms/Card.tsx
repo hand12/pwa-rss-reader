@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import Moment from 'react-moment'
 import { Card as CardType } from '../../ducks/cards/types'
 import { Stock } from '../../ducks/stocks/types'
-import { GENRES } from '../organisms/TopPageContents'
+import GENRES from '../../utils/genres'
 import './Card.scss';
 
 interface CardProps {
