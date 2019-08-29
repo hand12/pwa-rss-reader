@@ -30,6 +30,7 @@ export const fetchFeeds = async () => {
     ...await fetchFeedsFromProvider('techCrunch'),
     ...await fetchFeedsFromProvider('lifehacker'),
     ...await fetchFeedsFromProvider('itlifehack'),
+    ...await fetchFeedsFromProvider('hamusoku'),
   ]
   console.log('get feeds', feeds)
   return feeds

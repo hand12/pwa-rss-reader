@@ -13,7 +13,7 @@ export const GetFeedsEpic = (actions$: any) => (
       return from(getFeeds(action.payload))
         .pipe(
           mergeMap((feeds: Feed[]) => {
-            const cards = feeds.slice(0, 10).map(feed => Object.assign(
+            const cards = feeds.slice(0, 20).map(feed => Object.assign(
               {}, feed, { swiped: false }, { publishAt: new Date(feed.pubDate._seconds * 1000) })
             )
             return [

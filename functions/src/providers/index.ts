@@ -54,6 +54,11 @@ export const PROVIDERS = [
     name: 'itlifehack',
     url: 'http://itlifehack.jp/index.rdf',
     genre: 'Life'
+  },
+  {
+    name: 'hamusoku',
+    url: 'http://hamusoku.com/index.rdf',
+    genre: 'Life'
   }
 ]
 
