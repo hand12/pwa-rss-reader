@@ -2,18 +2,33 @@
 @import '../../styles/mixins.scss';
 
 .genreListContents {
-  padding: 16px;
-  a {
-    box-sizing: border-box;
-    display: inline-block;
-    width: 100%;
-    margin: 0 auto;
-    background: $mainColor;
-    border-radius: 8px;
-    padding: 12px;
-    font-weight: bold;
-    color: $fontColor;
-    margin-bottom: 12px;
-    @include materialShadow();
+  padding: 0;
+  border-bottom: 4px solid $mainColor;
+  ul {
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding: 0 8px;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    li {
+      border-radius: 4px 4px 0 0;
+      font-size: 14px;
+      font-weight: bold;
+      margin-right: 8px;
+      a {
+        display: inline-block;
+        padding: 6px 8px 4px;
+        text-decoration: none;
+        color: $fontColor;
+      }
+    }
+    .selected {
+      background: $mainColor;
+    }
+  }
+  ul::-webkit-scrollbar {
+    display: none;
   }
 }

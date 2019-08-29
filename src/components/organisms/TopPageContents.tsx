@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import { Card } from '../../ducks/cards/types'
 import { Stock } from '../../ducks/stocks/types'
-import GenreTitle from '../atoms/GenreTitle'
 import TopImageContents from '../organisms/TopImageContents'
 import CardsContents from '../organisms/CardsContents'
 import StocksIconContents from '../organisms/StocksIconContents'
@@ -41,13 +40,12 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
     <div className="mainContents">
       <TopImageContents />
       <NotificationContents />
-      <GenreTitle genre={ selectedGenre() } />
+      <GenreListContents getCards={ (genre) => getCards(genre) } selectedGenre={ selectedGenre() } />
       <CardsContents
         feeds={ feeds }
         cards={ cards }
         addStock={ addStock } />
       <StocksIconContents stocks={ stocks } />
-      <GenreListContents getCards={ (genre) => getCards(genre) } />
     </div>
   )
 }
