@@ -44,6 +44,11 @@ export const PROVIDERS = [
     name: 'techCrunch',
     url: 'https://jp.techcrunch.com/feed/',
     genre: 'Technology'
+  },
+  {
+    name: 'lifehacker',
+    url: 'https://www.lifehacker.jp/feed/index.xml',
+    genre: 'Life'
   }
 ]
 

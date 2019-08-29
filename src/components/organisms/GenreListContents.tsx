@@ -30,6 +30,9 @@ const GenreListContents: FC<GenreListContentsProps> = ({ getCards, selectedGenre
         <li className={ genreClassNames("Global") }>
           <Link to="?genre=Global" onClick={ () => getCards('Global') }>海外</Link>
         </li>
+        <li className={ genreClassNames("Life") }>
+          <Link to="?genre=Life" onClick={ () => getCards('Life') }>生活</Link>
+        </li>
       </ul>
     </div>
   )

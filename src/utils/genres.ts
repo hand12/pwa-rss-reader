@@ -14,5 +14,9 @@ export default [
   {
     name: 'Global',
     label: '海外'
+  },
+  {
+    name: 'Life',
+    label: '生活'
   }
 ]
