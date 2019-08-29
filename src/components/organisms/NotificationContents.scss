@@ -1,0 +1,15 @@
+@import '../../styles/colors.scss';
+
+.notificationContents {
+  padding: 0 16px;
+  margin-bottom: 12px;
+  .updateNotification {
+    $color: $green;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 4px;
+    background: lighten($color, 48);
+    border: 1px solid lighten($color, 20);
+  }
+}
