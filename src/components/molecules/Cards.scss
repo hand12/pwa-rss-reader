@@ -45,9 +45,9 @@
     top: 0;
     right: 0;
     border-radius: 4px;
-    color: white;
+    color: $fontColor;
     background: $mainColor;
-    border: 2px solid white;
+    border: 2px solid $fontColor;
     transform: rotate(10deg);
   }
 }

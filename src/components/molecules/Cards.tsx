@@ -71,7 +71,7 @@ const Cards: FC<CardsProps> = ({ cards, addStock }) => {
         </div>
         <div className="labelContainer">
           <span className={leftLabelClassNames}>スキップ</span>
-          <span className={rightLabelClassNames}>読む</span>
+          <span className={rightLabelClassNames}>ストック</span>
         </div>
       </div>
     </div>

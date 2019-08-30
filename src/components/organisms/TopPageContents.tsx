@@ -6,6 +6,7 @@ import CardsContents from '../organisms/CardsContents'
 import StocksIconContents from '../organisms/StocksIconContents'
 import GenreListContents from '../organisms/GenreListContents'
 import NotificationContents from '../organisms/NotificationContents'
+import AlterButtonsContents from '../organisms/AlterButtonsContents'
 import GENRES from '../../utils/genres'
 import './TopPageContents.scss'
 
@@ -39,12 +40,13 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
   return (
     <div className="mainContents">
       <TopImageContents />
-      <NotificationContents />
       <GenreListContents getCards={ (genre) => getCards(genre) } selectedGenre={ selectedGenre() } />
       <CardsContents
         feeds={ feeds }
         cards={ cards }
         addStock={ addStock } />
+      <AlterButtonsContents addStock={ addStock } />
+      <NotificationContents />
       <StocksIconContents stocks={ stocks } />
     </div>
   )
