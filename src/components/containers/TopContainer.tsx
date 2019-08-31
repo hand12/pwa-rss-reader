@@ -5,6 +5,7 @@ import { InitialStateType as StocksInitialState } from '../../ducks/stocks/reduc
 import { InitialStateType as FeedsInitialState } from '../../ducks/feeds/reducers'
 import { FeedsActions } from '../../ducks/feeds/actions'
 import { StocksActions } from '../../ducks/stocks/actions'
+import { CardsActions } from '../../ducks/cards/actions'
 import { Stock } from '../../ducks/stocks/types'
 import TopPageContents from '../organisms/TopPageContents'
 
@@ -17,7 +18,8 @@ interface InitialStateType {
 function mapDispatchToProps(dispatch: Dispatch) {
   return {
     getFeeds: (genre: string) => dispatch(FeedsActions.getFeeds.started(genre)),
-    addStock: (stock: Stock) => dispatch(StocksActions.addStock(stock))
+    addStock: (stock: Stock) => dispatch(StocksActions.addStock(stock)),
+    swipeCard: () => dispatch(CardsActions.swipeCard())
   }
 }
 

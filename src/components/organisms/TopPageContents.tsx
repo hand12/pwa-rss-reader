@@ -13,6 +13,7 @@ import './TopPageContents.scss'
 interface TopPageContentsProps {
   getFeeds(genre: string): void,
   addStock(stock: Stock): void,
+  swipeCard(): void,
   cards: Card[],
   stocks: Stock[]
   feeds: {
@@ -26,7 +27,7 @@ const selectedGenre = () => {
   return GENRES.find(g => g.name === genreParam) || GENRES[0]
 }
 
-const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, stocks, feeds }) => {
+const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, swipeCard, cards, stocks, feeds }) => {
   const getCards = (genre: string) => {
     if (GENRES.some(g => g.name === genre)) { getFeeds(genre!) }
     else getFeeds('Gadget')
@@ -44,8 +45,13 @@ const TopPageContents: FC<TopPageContentsProps> = ({ getFeeds, addStock, cards, 
       <CardsContents
         feeds={ feeds }
         cards={ cards }
-        addStock={ addStock } />
-      <AlterButtonsContents addStock={ addStock } />
+        addStock={ addStock }
+        swipeCard={ swipeCard } />
+      <AlterButtonsContents
+        cards={ cards }
+        addStock={ addStock }
+        swipeCard={ swipeCard }
+      />
       <NotificationContents />
       <StocksIconContents stocks={ stocks } />
     </div>

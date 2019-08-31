@@ -6,17 +6,18 @@ import Loading from '../atoms/Loading'
 import './CardsContents.scss'
 
 interface CardsContentsProps {
-  cards: Card[],
   addStock(stock: Stock): void,
+  swipeCard(): void,
+  cards: Card[],
   feeds: {
     loading: boolean
   }
 }
 
-const CardsContents: FC<CardsContentsProps> = ({feeds, cards, addStock }) => (
+const CardsContents: FC<CardsContentsProps> = ({feeds, cards, addStock, swipeCard }) => (
   <div className="cardsContents">
     {
-      feeds.loading ? <Loading /> : <Cards cards={ cards } addStock={ addStock } />
+      feeds.loading ? <Loading /> : <Cards cards={ cards } addStock={ addStock } swipeCard={ swipeCard } />
     }
   </div>
 )

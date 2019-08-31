@@ -13,6 +13,8 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Act
   switch(action.type) {
     case 'SET_CARDS':
       return action.payload
+    case 'SWIPE_CARD':
+      return state.filter((_, index) => index !== 0)
     default:
       return state
   }

@@ -6,5 +6,5 @@ const actionCreator = actionCreatorFactory()
 export const StocksActions = {
   addStock: actionCreator<Stock>('ADD_STOCK'),
   readStock: actionCreator<String>('READ_STOCK'),
-  removeStock: actionCreator<String>('REMOVE_STOCK'),
+  removeStock: actionCreator<String>('REMOVE_STOCK')
 }

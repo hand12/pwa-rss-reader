@@ -86,18 +86,19 @@
 
 $cardsPositionOffset: 40px;
 $cardsScaleOffset: 0.08;
-$cardsTotal: 10;
+$cardsTotal: 20;
+$maxDisplayCardsLength: 4;
 
 @for $i from 1 through $cardsTotal {
   $index: $i - 1;
   $translation: $cardsPositionOffset * $index;
   $scale: 1 - ($cardsScaleOffset * $index);
   .card:nth-child(#{$i}) {
-    z-index: $cardsTotal - $index;
+    z-index: $maxDisplayCardsLength - $index;
     opacity: 1;
     transform: translateY(-$translation) scale($scale);
 
-    @if $i >= 4 {
+    @if $i >= $maxDisplayCardsLength {
       display: none;
     }
 

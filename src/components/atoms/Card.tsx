@@ -11,8 +11,8 @@ import './Card.scss';
 interface CardProps {
   card: CardType
   setDisplayLabel: (direct: string) => void
-  swipeCard(id: string): void
-  addStock(stock: Stock): void,
+  swipeCard(): void
+  addStock(stock: Stock): void
 }
 
 const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard, addStock }) => {
@@ -56,9 +56,12 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard, addStock }) => 
 
     interact(element).unset()
 
+    setTimeout(() => {
+      swipeCard()
+    }, 220)
+
     switch(direct) {
       case 'LEFT':
-        swipeCard(card.id)
         setInteractPosition({
           x: -interactOutOfSightXCoordinate,
           y: interactOutOfSightYCoordinate,
@@ -66,7 +69,6 @@ const Card: FC<CardProps> = ({ setDisplayLabel, card, swipeCard, addStock }) => 
         })
         break
       case 'RIGHT':
-        swipeCard(card.id)
         setInteractPosition({
           x: interactOutOfSightXCoordinate,
           y: interactOutOfSightYCoordinate,

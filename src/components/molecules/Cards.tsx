@@ -6,27 +6,15 @@ import { Stock } from '../../ducks/stocks/types'
 import './Cards.scss'
 
 interface CardsProps {
+  cards: CardType[],
   addStock(stock: Stock): void,
-  cards: CardType[]
+  swipeCard(): void,
 }
 
-const Cards: FC<CardsProps> = ({ cards, addStock }) => {
+const Cards: FC<CardsProps> = ({ cards, addStock, swipeCard }) => {
 
-  const [ displayCards, setDisplayCards ] = useState<CardType[]>([])
   const [ isDisplayLeftLabel, setIsDisplayLeftLabel ] = useState(false)
   const [ isDisplayRightLabel, setIsDisplayRightLabel ] = useState(false)
-
-  const swipeCard = (id: string) => {
-    const card = displayCards.find(card => card.id === id)
-    if (!card) return
-
-    card.swiped = true
-
-    const cards = displayCards.filter(card => !card.swiped)
-    setTimeout(() => {
-      setDisplayCards(cards)
-    }, 220)
-  }
 
   const setDisplayLabel = (direct: string) => {
     switch(direct) {
@@ -42,14 +30,9 @@ const Cards: FC<CardsProps> = ({ cards, addStock }) => {
   }
 
   useEffect(() => {
-    const displayCards = cards.slice(0, 10).map(card => Object.assign({}, card, { swiped: false }))
-    setDisplayCards(displayCards)
-  }, [cards])
-
-  useEffect(() => {
     setIsDisplayRightLabel(false)
     setIsDisplayLeftLabel(false)
-  }, [displayCards])
+  }, [cards])
 
   const leftLabelClassNames = classNames('label', 'skip', { 'isDisplay' : isDisplayLeftLabel })
   const rightLabelClassNames = classNames('label', 'read', { 'isDisplay' : isDisplayRightLabel })
@@ -59,14 +42,15 @@ const Cards: FC<CardsProps> = ({ cards, addStock }) => {
       <div className="cardsContainer">
         <div className="cards">
           {
-            displayCards.map(card => (
-              <Card
-                card={ card }
-                key={ card.id }
-                setDisplayLabel={ (direct) => setDisplayLabel(direct) }
-                swipeCard={ (id: string) => swipeCard(id) }
-                addStock={ addStock } />
-            ))
+            cards
+              .map(card => (
+                <Card
+                  card={ card }
+                  key={ card.id }
+                  setDisplayLabel={ (direct) => setDisplayLabel(direct) }
+                  swipeCard={ swipeCard }
+                  addStock={ addStock } />
+              ))
           }
         </div>
         <div className="labelContainer">
