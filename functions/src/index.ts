@@ -4,6 +4,7 @@ admin.initializeApp(functions.config().firebase)
 
 import { fetchFeeds, saveFeeds, deleteFeeds } from './feeds'
 import { getFeeds } from './api/feeds'
+import PROJECTS from './utils/firebase/projects'
 
 
 export const updateFeeds = functions.pubsub.schedule('00 22 * * *').onRun(async (context) => {
@@ -22,13 +23,12 @@ export const updateFeeds = functions.pubsub.schedule('00 22 * * *').onRun(async 
 })
 
 export const apiFeedList = functions.https.onRequest(async (req, res) => {
+  const project = PROJECTS.find(p => p.id === process.env.GCLOUD_PROJECT)
+  if (!project) return res.status(200).json([]).end()
+
   const feeds = await getFeeds(req.query.genre)
 
-  const allowedOrigins = [
-    'http://localhost:3000',
-    'https://pwa-rss-reader-bcbc4.web.app',
-    'http://192.168.1.6:3000'
-  ]
+  const allowedOrigins = project.allowedOrigins
 
   const origin = req.headers.origin
 
