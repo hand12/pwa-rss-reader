@@ -43,7 +43,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy:functions:development": "firebase deploy --only functions --project pwa-rss-reader-bcbc4",
+    "deploy:functions:production": "firebase deploy --only functions --project news-collect",
+    "deploy:hosting:development": "firebase deploy --only hosting --project pwa-rss-reader-bcbc4",
+    "deploy:hosting:production": "firebase deploy --only hosting --project news-collect"
   },
   "eslintConfig": {
     "extends": "react-app"
