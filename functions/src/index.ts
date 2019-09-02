@@ -24,7 +24,6 @@ export const apiFeedList = functions.https.onRequest(async (req, res) => {
   const feeds = await getFeeds(req.query.genre)
 
   const allowedOrigins = functions.config().allowed_origins
-  console.log(allowedOrigins)
 
   const origin = req.headers.origin
 
