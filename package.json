@@ -46,7 +46,7 @@
     "eject": "react-scripts eject",
     "deploy:functions:staging": "firebase deploy --only functions --project pwa-rss-reader-bcbc4",
     "deploy:functions:production": "firebase deploy --only functions --project news-collect",
-    "deploy:hosting:staging": "NODE_ENV=\"staging\" yarn run build && firebase deploy --only hosting --project pwa-rss-reader-bcbc4",
+    "deploy:hosting:staging": "yarn run build && firebase deploy --only hosting --project pwa-rss-reader-bcbc4",
     "deploy:hosting:production": "yarn run build && firebase deploy --only hosting --project news-collect"
   },
   "eslintConfig": {

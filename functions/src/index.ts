@@ -5,7 +5,7 @@ admin.initializeApp(functions.config().firebase)
 import { fetchFeeds, saveFeeds, deleteFeeds } from './feeds'
 import { getFeeds } from './api/feeds'
 
-export const updateFeeds = functions.pubsub.schedule('00 22 * * *').onRun(async (context) => {
+export const updateFeeds = functions.pubsub.schedule('00 17 * * *').onRun(async (context) => {
   const feeds = await fetchFeeds()
 
   Promise.all([
