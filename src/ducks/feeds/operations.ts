@@ -13,11 +13,14 @@ export const GetFeedsEpic = (actions$: any) => (
       return from(getFeeds(action.payload))
         .pipe(
           mergeMap((feeds: Feed[]) => {
-            const cards = feeds.slice(0, 20).map(feed => Object.assign(
-              {}, feed, { swiped: false }, { publishAt: new Date(feed.pubDate._seconds * 1000) })
-            )
+            const cards = feeds
+              .slice(0, 20)
+              .map(feed => Object.assign(
+                {}, feed, { swiped: false }, { publishAt: new Date(feed.pubDate._seconds * 1000) })
+              )
+              .sort((a, b) => a.publishAt.getTime() < b.publishAt.getTime() ? 1 : -1)
             return [
-              CardsActions.setCards(cards), FeedsActions.getFeeds.done({ params: 'hoge', result: 'fuga' })
+              CardsActions.setCards(cards), FeedsActions.getFeeds.done({ params: '', result: '' })
             ]
           })
         )
