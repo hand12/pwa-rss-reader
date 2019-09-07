@@ -1,0 +1,14 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
+.addContainer {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  margin: 0 auto;
+  h1 {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+  }
+}
